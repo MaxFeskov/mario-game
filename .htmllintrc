@@ -51,7 +51,7 @@
   "input-req-label": false,
   "label-req-for": false,
   "lang-style": "case",
-  "line-end-style": "crlf",
+  "line-end-style": "lf",
   "line-max-len": false,
   "line-max-len-ignore-regex": "/href/g",
   "maxerr": false,
