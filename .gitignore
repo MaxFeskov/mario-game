@@ -20,5 +20,3 @@ src/scss/helpers/*.scss
 
 # Lock files
 package-lock.json
-
-source
