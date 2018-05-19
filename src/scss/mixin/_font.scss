@@ -1,0 +1,75 @@
+$fontWeightNum: (
+  "XT": 100,
+  "T": 200,
+  "L": 300,
+  "R": 400,
+  "M": 500,
+  "SB": 600,
+  "B": 700,
+  "XB": 800,
+  "BK": 900
+);
+
+$fontWeightStr: (
+  "XT": "ExtraThin",
+  "T": "Thin",
+  "L": "Light",
+  "R": "Regular",
+  "M": "Medium",
+  "SB": "Semibold",
+  "B": "Bold",
+  "XB": "Extrabold",
+  "BK": "Black"
+);
+
+@function get-font-fullname($font-name, $font-variant) {
+  $index: str-index($font-variant, "I");
+
+  @if $index != null {
+    @return $font-name + "-" +
+      map-get($fontWeightStr, str-slice($font-variant, 0, $index - 1)) +
+      "Italic";
+  } @else {
+    @return $font-name + "-" + map-get($fontWeightStr, $font-variant);
+  }
+}
+
+@mixin addFonts($font-name, $font-path, $font-variants...) {
+  @each $font-variant in $font-variants {
+    $index: str-index($font-variant, "I");
+
+    @if $index != null {
+      @include addFont(
+        $font-name,
+        get-font-fullname($font-path, $font-variant),
+        str-slice($font-variant, 0, $index - 1),
+        str-slice($font-variant, $index)
+      );
+    } @else {
+      @include addFont(
+        $font-name,
+        get-font-fullname($font-path, $font-variant),
+        $font-variant,
+        ""
+      );
+    }
+  }
+}
+
+@mixin addFont($font-name, $font-path, $font-weight, $font-style) {
+  @font-face {
+    font-family: $font-name;
+    src: url($font-path+".woff2") format("woff2"),
+      url($font-path+".woff") format("woff"),
+      url($font-path+".svg") format("svg");
+
+    @if map-has-key($fontWeightNum, $font-weight) {
+      $font_weight: map-get($fontWeightNum, $font-weight);
+      font-weight: $font_weight;
+    }
+
+    @if $font-style == "I" {
+      font-style: italic;
+    }
+  }
+}

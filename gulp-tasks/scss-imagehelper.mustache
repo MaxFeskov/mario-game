@@ -1,0 +1,99 @@
+@mixin bgOptions($img-name, $options...) {
+  @if index($options, width) {
+    width: image-width($img-name);
+  } @else if index($options, height) {
+    height: image-height($img-name);
+  } @else if index($options, size) {
+    width: image-width($img-name);
+    height: image-height($img-name);
+  }
+
+  @if index($options, repeat) {
+    background-repeat: repeat;
+  } @else if index($options, repeat-x) {
+    background-repeat: repeat-x;
+  } @else if index($options, repeat-y) {
+    background-repeat: repeat-y;
+  } @else {
+    background-repeat: no-repeat;
+  }
+
+  @if index($options, bg-size) {
+    background-size: image-width($img-name) image-height($img-name);
+  } @else if $units != "px" {
+    background-size: image-width($img-name) image-height($img-name);
+  }
+}
+
+@mixin bg($img-name, $options...) {
+  background-image: image-url($img-name);
+  @include bgOptions($img-name, $options...);
+}
+
+@mixin bgX2($img-name, $options...) {
+  @include bg($img-name, $options...);
+
+  @include X2() {
+    $nameX2: name-x2($img-name);
+    background-image: image-url($nameX2);
+  }
+}
+
+@mixin bgX3($img-name, $options...) {
+  @include bgX2($img-name, $options...);
+
+  @include X3() {
+    $nameX3: name-x3($img-name);
+    background-image: image-url($nameX3);
+  }
+}
+
+@function compassimagehelper-get-list($image) {
+  @if map-has-key($compass-imagehelper-images-map, $image) {
+    $list: map-get($compass-imagehelper-images-map, $image);
+
+    @if type-of($list) == list {
+      @return $list;
+    }
+  }
+
+  @warn "Image `#{$image}` not found.";
+  @return false;
+}
+
+@function image-width($image) {
+  $list: compassimagehelper-get-list($image);
+  $width: nth($list, 1);
+
+  @if (type-of($width) == number) {
+    @return e($width);
+  } @else {
+    @return 0;
+  }
+}
+
+@function image-height($image) {
+  $list: compassimagehelper-get-list($image);
+  $height: nth($list, 2);
+
+  @if (type-of($height) == number) {
+    @return e($height);
+  } @else {
+    @return 0;
+  }
+}
+
+@function image-url($image) {
+  $result: quote("{{{path_prefix}}}" + $image);
+  @return  url($result);
+}
+
+@function image-exists($image) {
+  @return map-has-key($compass-imagehelper-images-map, $image);
+}
+
+$compass-imagehelper-images-map:(
+{{#items}}
+  "{{{path}}}": {{width}} {{height}},
+{{/items}}
+);

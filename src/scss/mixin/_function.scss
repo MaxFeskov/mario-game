@@ -1,0 +1,53 @@
+$units: "px" !default;
+
+@function str-split($string, $separator) {
+  $split-arr: ();
+  $index: str-index($string, $separator);
+
+  @while $index != null {
+    $item: str-slice($string, 1, $index - 1);
+    $split-arr: append($split-arr, $item);
+    $string: str-slice($string, $index + 1);
+    $index: str-index($string, $separator);
+  }
+
+  $split-arr: append($split-arr, $string);
+
+  @return $split-arr;
+}
+
+@function str-replace($string, $search, $replace: "") {
+  $index: str-index($string, $search);
+
+  @if $index {
+    @return str-slice($string, 1, $index - 1) + $replace +
+      str-replace(
+        str-slice($string, $index + str-length($search)),
+        $search,
+        $replace
+      );
+  }
+
+  @return $string;
+}
+
+@function rem($px, $root: 16) {
+  @return $px / $root * 1rem;
+}
+
+@function e($px, $unt: $units) {
+  @if ($unt == "rem") {
+    @return rem($px);
+  } @else {
+    @return $px * 1px;
+  }
+}
+
+@function trim($string, $symbol: " ") {
+  @while (str-index($string, $symbol) != null) {
+    $index: str-index($string, $symbol);
+    $string: "#{str-slice($string, 0, $index - 1)}#{str-slice($string, $index + 1)}";
+  }
+
+  @return $string;
+}

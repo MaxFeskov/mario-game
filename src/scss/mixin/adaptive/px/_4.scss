@@ -1,0 +1,49 @@
+$units: "px";
+
+@mixin desktopOnly($orientation: null) {
+  @if ($orientation == portrait) {
+    @media only screen and (min-width: $laptop_w + 1) and (max-width: $desktop_w) and (orientation: $orientation) {
+      @content;
+    }
+  } @else {
+    @media only screen and (min-width: $laptop_w + 1) and (max-width: $desktop_w) {
+      @content;
+    }
+  }
+}
+
+@mixin laptopOnly($orientation: null) {
+  @if ($orientation == portrait) {
+    @media only screen and (min-width: $tablet_w + 1) and (max-width: $laptop_w) and (orientation: $orientation) {
+      @content;
+    }
+  } @else {
+    @media only screen and (min-width: $tablet_w + 1) and (max-width: $laptop_w) {
+      @content;
+    }
+  }
+}
+
+@mixin tabletOnly($orientation: null) {
+  @if ($orientation == portrait) {
+    @media only screen and (min-width: $mobile_w + 1) and (max-width: $tablet_w) {
+      @content;
+    }
+  } @else {
+    @media only screen and (min-width: $mobile_w + 1) and (max-width: $tablet_w) {
+      @content;
+    }
+  }
+}
+
+@mixin mobileOnly($orientation: null) {
+  @if ($orientation == portrait) {
+    @media only screen and (max-width: $mobile_w) {
+      @content;
+    }
+  } @else {
+    @media only screen and (max-width: $mobile_w) {
+      @content;
+    }
+  }
+}

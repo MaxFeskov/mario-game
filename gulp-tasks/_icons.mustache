@@ -1,0 +1,21 @@
+@import "mixin/font";
+
+$font-name: "{{font-name}}" !default;
+$font-path: "../fonts-icon/{{font-name}}/{{font-name}}" !default;
+
+@include addFont($font-name, $font-path, "R", "");
+
+@mixin addFontIcon($iconName) {
+  $icon: map-get($font-icon, $iconName);
+
+  @if type-of($icon) == string {
+    font-family: "{{font-name}}", sans-serif;
+    content: $icon;
+  }
+}
+
+$font-icon:(
+{{#icons}}
+  "{{{name}}}": "\{{icon}}",
+{{/icons}}
+);

@@ -1,0 +1,24 @@
+// Place your settings in this file to overwrite default and user settings.
+{
+  "files.eol": "\n",
+  "eslint.enable": true,
+  "stylelint.enable": true,
+  "prettier.eslintIntegration": true,
+  "prettier.stylelintIntegration": true,
+
+  "eslint.nodePath": "./node_modules/eslint",
+  "eslint.options": {
+    "configFile": ".eslintrc.js"
+  },
+  "eslint.validate": [
+    "javascript"
+  ],
+  "scss.validate": true,
+  "[javascript]": {
+    "editor.formatOnSave": true
+  },
+  "[scss]": {
+    "editor.formatOnSave": true
+  },
+  "npm.enableScriptExplorer": true
+}

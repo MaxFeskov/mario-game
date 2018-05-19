@@ -1,0 +1,16 @@
+include /node_modules/bemto.pug/bemto
+include /src/pug/settings/bemto-settings
+include /src/pug/utils/function
+
+doctype html
+html(lang=data("lang"))
+  head
+    include base/meta/base
+      title= data("title")
+      block head_link
+        link(rel='stylesheet', href='/build/css/fonts.min.css')/
+        link(rel='stylesheet', href="/build/css/style.min.css")/
+  body
+    block content
+
+    script(src="/build/js/main.js")

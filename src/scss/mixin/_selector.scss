@@ -1,0 +1,50 @@
+@mixin atRoot($add-selectors...) {
+  $base-selectors: str-split(#{&}, ", ");
+  $result-selector: "";
+  $counter: 0;
+
+  @each $selector in $base-selectors {
+    @if $counter == 0 {
+      $result-selector: add-selector-list-suffix(
+        $add-selectors,
+        trim($selector)
+      );
+    } @else {
+      $result-selector: #{$result-selector},
+        add-selector-list-suffix($add-selectors, trim($selector));
+    }
+
+    $counter: 1;
+  }
+
+  @at-root {
+    #{$result-selector} {
+      @content;
+    }
+  }
+}
+
+@mixin clearfix() {
+  &::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+@function add-selector-list-suffix($selector-list, $suffix) {
+  $selector-counter: 0;
+  $selector-string: "";
+
+  @each $selector in $selector-list {
+    @if $selector-counter == 0 {
+      $selector-string: #{$selector}#{$suffix};
+    } @else {
+      $selector-string: #{$selector-string}, #{$selector}#{$suffix};
+    }
+
+    $selector-counter: 1;
+  }
+
+  @return $selector-string;
+}

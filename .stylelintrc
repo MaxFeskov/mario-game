@@ -1,0 +1,42 @@
+{
+  "extends": "stylelint-config-recommended-scss",
+  "rules": {
+    "indentation": 2,
+    "color-named": "never",
+    "function-url-no-scheme-relative": true,
+    "function-url-scheme-blacklist": ["ftp", "/^http/"],
+    "number-max-precision": [2, {ignoreUnits: ["%"]}],
+    "time-min-milliseconds": 100,
+    "unit-whitelist": ["px", "em", "rem", "deg", "%", "vh", "s", "dpi", "dppx"],
+    "shorthand-property-no-redundant-values": true,
+    "value-no-vendor-prefix": true,
+    "selector-no-vendor-prefix": true,
+    "media-feature-name-no-vendor-prefix": true,
+    "media-feature-name-no-unknown": [true, {ignoreMediaFeatureNames: [
+      "min-device-pixel-ratio",
+      "max-device-pixel-ratio"
+    ]}],
+    "at-rule-no-vendor-prefix": true,
+    "declaration-no-important": true,
+    "selector-max-type": 2,
+    "selector-max-combinators": 3,
+    "selector-max-compound-selectors": 4,
+    "selector-max-id": 0,
+    "selector-max-universal": 1,
+    "no-unknown-animations": true,
+    "color-hex-length": "short",
+    "font-weight-notation": "numeric",
+    "function-name-case": "lower",
+    "function-url-quotes": ["always", {except: ["empty"]}],
+    "string-quotes": "double",
+    "length-zero-no-unit": true,
+    "value-keyword-case": "lower",
+    "selector-pseudo-element-colon-notation": "double",
+    "no-empty-source": null
+  },
+  "ignoreFiles": [
+    "build/**/*.*",
+    "src/scss/mixin/_retina.scss",
+    "src/scss/mixin/adaptive/_base.scss"
+  ]
+}
