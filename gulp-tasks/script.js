@@ -22,14 +22,16 @@ gulp.task('build:script', () =>
       const fileFullName = file.path;
       const fileNameForSave = `${filePath.basename(fileFullName)}`;
 
-      return browserify(fileFullName)
-        .transform(babelify)
-        .bundle()
-        .on('error', global.errorHandler)
-        .pipe(source(fileNameForSave))
-        .pipe(buffer())
-        .pipe($.uglify())
-        .pipe(gulp.dest(path.build.script));
+      return (
+        browserify(fileFullName)
+          .transform(babelify)
+          .bundle()
+          .on('error', global.errorHandler)
+          .pipe(source(fileNameForSave))
+          .pipe(buffer())
+        // .pipe($.uglify())
+          .pipe(gulp.dest(path.build.script))
+      );
     })));
 
 gulp.task('dev:script', () =>
