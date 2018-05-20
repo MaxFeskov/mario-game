@@ -10,7 +10,7 @@ const srcPath = {
   image: ['./src/img/**/*.*', '!src/img/images/**/*.*'],
   script: './src/js/*.js',
   style: './src/scss/*.scss',
-  vendor: './src/vendor/**/*.*',
+  vendor: './src/configs/**/*.*',
 };
 
 const buildPath = {
@@ -23,12 +23,12 @@ const buildPath = {
   image: './build/img/',
   script: './build/js/',
   style: './build/css/',
-  vendor: './build/vendor/',
+  vendor: './build/configs/',
 };
 
 let watchPath = {
   html: ['./src/pug/**/*.pug', './src/data/**/*.json'],
-  script: './src/js/**/*.js',
+  script: ['./src/js/**/*.js', './build/configs/**/*.*'],
   style: './src/scss/**/*.scss',
 };
 

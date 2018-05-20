@@ -14,9 +14,7 @@
     "marginwidth",
     "marginheight",
     "scrolling",
-    "style",
-    "width",
-    "height"
+    "style"
   ],
   "attr-name-ignore-regex": false,
   "attr-name-style": "dash",

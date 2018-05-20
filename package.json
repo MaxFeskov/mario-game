@@ -11,9 +11,7 @@
     "build:script": "gulp build:script",
     "build:style": "gulp build:style",
     "build:vendor": "gulp build:vendor",
-
     "browserslist": "npx browserslist",
-
     "clean": "gulp clean",
     "clean:font": "gulp clean:font",
     "clean:html": "gulp clean:html",
@@ -22,7 +20,6 @@
     "clean:script": "gulp clean:script",
     "clean:style": "gulp clean:style",
     "clean:vendor": "gulp clean:vendor",
-
     "dev": "gulp",
     "dev:font": "gulp dev:font",
     "dev:html": "gulp dev:html",

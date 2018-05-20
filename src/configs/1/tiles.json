@@ -1,0 +1,178 @@
+{
+  "G": {
+    "name": "ground",
+    "sx": 0,
+    "sy": 0,
+    "sWidth": 32,
+    "sHeight": 32
+  },
+  "W": {
+    "name": "wall",
+    "sx": 32,
+    "sy": 0,
+    "sWidth": 32,
+    "sHeight": 32
+  },
+  "w": {
+    "name": "castleWall",
+    "sx": 64,
+    "sy": 0,
+    "sWidth": 32,
+    "sHeight": 32
+  },
+  "<": {
+    "name": "pipe",
+    "sx": 0,
+    "sy": 96,
+    "sWidth": 32,
+    "sHeight": 32
+  },
+  ">": {
+    "name": "pipe",
+    "sx": 32,
+    "sy": 96,
+    "sWidth": 32,
+    "sHeight": 32
+  },
+  "{": {
+    "name": "wall",
+    "sx": 0,
+    "sy": 64,
+    "sWidth": 32,
+    "sHeight": 32
+  },
+  "}": {
+    "name": "wall",
+    "sx": 32,
+    "sy": 64,
+    "sWidth": 32,
+    "sHeight": 32
+  },
+  "B": {
+    "name": "box",
+    "sx": 768,
+    "sy": 0,
+    "sWidth": 32,
+    "sHeight": 32
+  },
+  "S": {
+    "name": "stone",
+    "sx": 0,
+    "sy": 32,
+    "sWidth": 32,
+    "sHeight": 32
+  },
+  "F": {
+    "name": "flagpole",
+    "sx": 512,
+    "sy": 96,
+    "sWidth": 32,
+    "sHeight": 32
+  },
+  "f": {
+    "name": "flagtop",
+    "sx": 512,
+    "sy": 64,
+    "sWidth": 32,
+    "sHeight": 32
+  },
+  "1": {
+    "name": "kindomPath",
+    "sx": 416,
+    "sy": 32,
+    "sWidth": 32,
+    "sHeight": 32
+  },
+  "2": {
+    "name": "kindomPath",
+    "sx": 384,
+    "sy": 32,
+    "sWidth": 32,
+    "sHeight": 32
+  },
+  "3": {
+    "name": "kindomPath",
+    "sx": 352,
+    "sy": 32,
+    "sWidth": 32,
+    "sHeight": 32
+  },
+  "4": {
+    "name": "kindomPath",
+    "sx": 352,
+    "sy": 0,
+    "sWidth": 32,
+    "sHeight": 32
+  },
+  "5": {
+    "name": "kindomPath",
+    "sx": 384,
+    "sy": 0,
+    "sWidth": 32,
+    "sHeight": 32
+  },
+  "6": {
+    "name": "kindomPath",
+    "sx": 448,
+    "sy": 0,
+    "sWidth": 32,
+    "sHeight": 32
+  },
+  "7": {
+    "name": "kindomPath",
+    "sx": 352,
+    "sy": 0,
+    "sWidth": 32,
+    "sHeight": 32
+  },
+  "cloud": {
+    "name": "cloud",
+    "sx": 832,
+    "sy": 64,
+    "sWidth": 96,
+    "sHeight": 64
+  },
+  "bush": {
+    "name": "bush",
+    "sx": 352,
+    "sy": 96,
+    "sWidth": 96,
+    "sHeight": 64
+  },
+  "hillLeft": {
+    "name": "hillLeft",
+    "sx": 256,
+    "sy": 64,
+    "sWidth": 32,
+    "sHeight": 32
+  },
+  "hillRight": {
+    "name": "hillRight",
+    "sx": 320,
+    "sy": 64,
+    "sWidth": 32,
+    "sHeight": 32
+  },
+  "hillMiddle": {
+    "name": "hillMiddle",
+    "sx": 288,
+    "sy": 96,
+    "sWidth": 32,
+    "sHeight": 32
+  },
+  "hillMiddleLeft": {
+    "name": "hillMiddleLeft",
+    "sx": 256,
+    "sy": 96,
+    "sWidth": 32,
+    "sHeight": 32
+  },
+  "hillTop": {
+    "name": "hillTop",
+    "sx": 288,
+    "sy": 64,
+    "sWidth": 32,
+    "sHeight": 32
+  }
+}
+
