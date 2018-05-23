@@ -8,6 +8,7 @@ const srcPath = {
   image: ['./src/img/**/*.*', '!src/img/images/**/*.*'],
   script: './src/js/*.js',
   sprites: './src/sprites/',
+  spritesTemplate: './gulp-tasks/spritesmith.mustache',
   style: './src/scss/*.scss',
   vendor: './src/configs/**/*.*',
 };

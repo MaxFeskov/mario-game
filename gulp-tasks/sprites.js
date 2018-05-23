@@ -29,7 +29,7 @@ gulp.task('build:sprites', (cb) => {
       .pipe($.spritesmith({
         imgName: `${spriteName}.png`,
         cssName: `${spriteName}.json`,
-        cssFormat: 'json_texture',
+        cssTemplate: path.src.spritesTemplate,
       }))
       .pipe(gulp.dest(path.build.sprites));
   });
