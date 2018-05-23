@@ -1,0 +1,6 @@
+@import "mixin/font";
+
+$font-name: "emulogic" !default;
+$font-path: "../fonts/emulogic/emulogic" !default;
+
+@include addFonts($font-name, $font-path, "R");

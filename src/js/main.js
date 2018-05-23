@@ -3,6 +3,7 @@ import {
 } from './modules/loaders';
 
 import SoundManager from './classes/SoundManager';
+import TextManager from './classes/TextManager';
 import GameMap from './classes/GameMap';
 
 // import drawGrid from './modules/grid';
@@ -12,8 +13,10 @@ const levelNumber = 1;
 async function main(context) {
   const [levelMap, tilesConfig, tilesImg, trackList] = await Promise.all([
     loadJSON(`/build/configs/${levelNumber}/map.json`),
+
     loadJSON(`/build/configs/${levelNumber}/tiles.json`),
     loadImage(`/build/configs/${levelNumber}/tiles.png`),
+
     loadJSON('/build/configs/track-list.json'),
   ]);
 
@@ -29,6 +32,14 @@ async function main(context) {
     },
     'main-theme',
   );
+
+  const textManager = new TextManager(context);
+
+  const textID = textManager.addText('Mario Bros', 32, 32);
+
+  setTimeout(() => {
+    textManager.replaceText(textID, 'Super Mario Bros');
+  }, 1000);
 }
 
 document.addEventListener('DOMContentLoaded', () => {
