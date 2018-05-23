@@ -7,6 +7,7 @@ const srcPath = {
   html: ['src/pug/*.pug', '!src/pug/_*.pug'],
   image: ['./src/img/**/*.*', '!src/img/images/**/*.*'],
   script: './src/js/*.js',
+  sprites: './src/sprites/',
   style: './src/scss/*.scss',
   vendor: './src/configs/**/*.*',
 };
@@ -16,6 +17,7 @@ const buildPath = {
   font: './build/fonts/',
   html: './',
   image: './build/img/',
+  sprites: './build/sprites/',
   script: './build/js/',
   style: './build/css/',
   vendor: './build/configs/',

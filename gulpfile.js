@@ -1,5 +1,8 @@
 global.$ = require('gulp-load-plugins')({ renameFn(name) {
-  return name.replace('gulp-', '').replace('gulp.', '').replace(/-/g, '_');
+  return name
+    .replace('gulp-', '')
+    .replace('gulp.', '')
+    .replace(/-/g, '_');
 } });
 
 global.errorHandler = (err) => {
@@ -22,6 +25,7 @@ gulp.task(
   'clean',
   gulp.parallel(
     'clean:image',
+    'clean:sprites',
     'clean:font',
     'clean:vendor',
     'clean:script',
@@ -34,7 +38,7 @@ gulp.task(
   'build',
   gulp.series(
     'clean',
-    gulp.parallel('build:image', 'build:font', 'build:vendor', 'build:script'),
+    gulp.parallel('build:image', 'build:sprites', 'build:font', 'build:vendor', 'build:script'),
     gulp.parallel('build:style'),
     'build:html',
   ),
@@ -44,6 +48,7 @@ gulp.task(
   'watch',
   gulp.parallel(
     'watch:image',
+    'watch:sprites',
     'watch:font',
     'watch:vendor',
     'watch:script',
@@ -55,7 +60,7 @@ gulp.task(
 gulp.task(
   'dev',
   gulp.series(
-    gulp.parallel('dev:image', 'dev:font', 'dev:vendor', 'dev:script'),
+    gulp.parallel('dev:image', 'dev:sprites', 'dev:font', 'dev:vendor', 'dev:script'),
     gulp.parallel('dev:style'),
     'dev:html',
   ),
