@@ -26,7 +26,7 @@ gulp.task('build:sprite', (cb) => {
 
     gulp
       .src(join(directory, '**/*.png'))
-      .pipe($.spritemith({
+      .pipe($.spritesmith({
         padding: 2,
         imgName: `${spriteName}.png`,
         cssName: `${spriteName}.json`,
