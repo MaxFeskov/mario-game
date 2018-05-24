@@ -18,27 +18,28 @@ const getDirectories = source =>
     .map(name => join(source, name))
     .filter(isDirectory);
 
-gulp.task('clean:sprites', () => del(path.build.sprites));
+gulp.task('clean:sprite', () => del(path.build.sprite));
 
-gulp.task('build:sprites', (cb) => {
-  getDirectories(path.src.sprites).forEach((directory) => {
+gulp.task('build:sprite', (cb) => {
+  getDirectories(path.src.sprite).forEach((directory) => {
     const spriteName = directory.split('\\').pop();
 
     gulp
       .src(join(directory, '**/*.png'))
-      .pipe($.spritesmith({
+      .pipe($.spritemith({
+        padding: 2,
         imgName: `${spriteName}.png`,
         cssName: `${spriteName}.json`,
-        cssTemplate: path.src.spritesTemplate,
-        cssOpts: { path: `${path.build.sprites.replace('./', '/')}${spriteName}.png` },
+        cssTemplate: path.src.spriteTemplate,
+        cssOpts: { path: `${path.build.sprite.replace('./', '/')}${spriteName}.png` },
       }))
-      .pipe(gulp.dest(path.build.sprites));
+      .pipe(gulp.dest(path.build.sprite));
   });
 
   cb();
 });
 
-gulp.task('dev:sprites', gulp.series('build:sprites'));
+gulp.task('dev:sprite', gulp.series('build:sprite'));
 
-gulp.task('watch:sprites', () =>
-  gulpWatch(path.watch.sprites, gulp.series('dev:sprites', 'server:reload')));
+gulp.task('watch:sprite', () =>
+  gulpWatch(path.watch.sprite, gulp.series('dev:sprite', 'server:reload')));

@@ -25,7 +25,7 @@ gulp.task(
   'clean',
   gulp.parallel(
     'clean:image',
-    'clean:sprites',
+    'clean:sprite',
     'clean:font',
     'clean:vendor',
     'clean:script',
@@ -38,7 +38,7 @@ gulp.task(
   'build',
   gulp.series(
     'clean',
-    gulp.parallel('build:image', 'build:sprites', 'build:font', 'build:vendor', 'build:script'),
+    gulp.parallel('build:image', 'build:sprite', 'build:font', 'build:vendor', 'build:script'),
     gulp.parallel('build:style'),
     'build:html',
   ),
@@ -48,7 +48,7 @@ gulp.task(
   'watch',
   gulp.parallel(
     'watch:image',
-    'watch:sprites',
+    'watch:sprite',
     'watch:font',
     'watch:vendor',
     'watch:script',
@@ -60,7 +60,7 @@ gulp.task(
 gulp.task(
   'dev',
   gulp.series(
-    gulp.parallel('dev:image', 'dev:sprites', 'dev:font', 'dev:vendor', 'dev:script'),
+    gulp.parallel('dev:image', 'dev:sprite', 'dev:font', 'dev:vendor', 'dev:script'),
     gulp.parallel('dev:style'),
     'dev:html',
   ),
