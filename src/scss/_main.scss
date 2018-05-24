@@ -6,7 +6,6 @@ body {
 
 canvas {
   background: #5c94fc;
-  font-family: "Emulogic", Arial, Helvetica, sans-serif;
-  // @include bg("level/1-1.png");
+  font-family: "Emulogic", Arial, Helvetica, sans-serif; // background: url("/source/map/1-1.png") no-repeat left top;
   background-size: auto 200%;
 }
