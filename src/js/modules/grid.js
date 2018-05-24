@@ -1,7 +1,14 @@
-export default function drawGrid(context, step = 32) {
+export default function drawGrid(ctx, step = 32) {
+  const context = ctx;
+
+  context.save();
   const {
     width, height,
   } = context.canvas;
+
+  context.strokeStyle = '#000';
+  context.fillStyle = '#fff';
+  context.lineWidth = 0.25;
 
   for (let x = 0; x < width; x += step) {
     context.beginPath();
@@ -18,10 +25,10 @@ export default function drawGrid(context, step = 32) {
     context.lineTo(width, y);
     context.stroke();
 
-    const ceil = y / step;
-
     for (let i = 0; i < 23; i += 1) {
-      context.fillText(15 - ceil, 320 * i, y);
+      context.fillText(y / step, 320 * i, y + 10);
     }
   }
+
+  context.restore();
 }

@@ -1,4 +1,7 @@
 extends _layout.pug
 
 block content
-  canvas(width="7168" height="480")#game
+  +b.b-game
+    canvas(width="7168" height="480")#background
+    canvas(width="7168" height="480")#main
+    canvas(width="7168" height="480")#info

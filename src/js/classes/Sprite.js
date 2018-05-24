@@ -5,13 +5,17 @@ export default class Sprite {
   }
 
   getItem(name) {
-    const item = this.items.filter(element => element.name === name).shift();
+    const item = this.items.filter(element => element.name === name)[0];
 
     if (item && Object.keys(item) !== 0) {
-      item.image = this.image;
-      delete item.name;
+      const result = Object.assign({}, item);
+
+      result.image = this.image;
+      delete result.name;
+
+      return result;
     }
 
-    return item;
+    return null;
   }
 }

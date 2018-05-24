@@ -1,0 +1,41 @@
+{
+  "locations": {
+    "0": {
+      "main": {
+        "objects": [
+          {
+            "name": "pavement",
+            "x": 0,
+            "y": 13
+          }
+        ],
+        "options": {
+          "objectAlign": "left"
+        }
+      },
+      "background": {
+        "objects": [
+          {
+            "name": "cloud",
+            "x": 9,
+            "y": 3
+          },
+          {
+            "name": "cloud",
+            "x": 20,
+            "y": 2
+          },
+          {
+            "name": "name",
+            "x": 0,
+            "y": 0
+          }
+        ],
+        "options": {
+          "objectAlign": "center"
+        }
+      }
+    }
+  }
+}
+

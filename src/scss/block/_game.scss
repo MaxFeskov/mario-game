@@ -1,0 +1,17 @@
+.b-game {
+  width: 31 * 32px;
+  height: 15 * 32px;
+  position: relative;
+  margin: 0 auto;
+  background-color: #3cbcfc;
+  // background: url("/source/map/1-1.png") no-repeat left top;
+  background-size: auto 200%;
+  overflow: hidden;
+
+  canvas {
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: transparent;
+  }
+}
