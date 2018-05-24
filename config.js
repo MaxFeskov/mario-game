@@ -7,7 +7,7 @@ const srcPath = {
   html: ['src/pug/*.pug', '!src/pug/_*.pug'],
   image: ['./src/img/**/*.*', '!src/img/images/**/*.*'],
   script: './src/js/*.js',
-  sprite: './src/sprites/',
+  sprite: './src/sprite/',
   spriteTemplate: './gulp-tasks/spritesmith.mustache',
   style: './src/scss/*.scss',
   vendor: './src/configs/**/*.*',
