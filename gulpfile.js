@@ -25,6 +25,7 @@ gulp.task(
   'clean',
   gulp.parallel(
     'clean:image',
+    'clean:sound',
     'clean:sprite',
     'clean:font',
     'clean:vendor',
@@ -38,8 +39,8 @@ gulp.task(
   'build',
   gulp.series(
     'clean',
-    gulp.parallel('build:image', 'build:sprite', 'build:font', 'build:vendor', 'build:script'),
-    gulp.parallel('build:style'),
+    gulp.parallel('build:image', 'build:sound', 'build:sprite', 'build:font', 'build:vendor'),
+    gulp.parallel('build:style', 'build:script'),
     'build:html',
   ),
 );
@@ -48,6 +49,7 @@ gulp.task(
   'watch',
   gulp.parallel(
     'watch:image',
+    'watch:sound',
     'watch:sprite',
     'watch:font',
     'watch:vendor',
@@ -60,8 +62,8 @@ gulp.task(
 gulp.task(
   'dev',
   gulp.series(
-    gulp.parallel('dev:image', 'dev:sprite', 'dev:font', 'dev:vendor', 'dev:script'),
-    gulp.parallel('dev:style'),
+    gulp.parallel('dev:image', 'dev:sound', 'dev:sprite', 'dev:font', 'dev:vendor'),
+    gulp.parallel('dev:style', 'dev:script'),
     'dev:html',
   ),
 );

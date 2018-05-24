@@ -17,7 +17,7 @@ async function main(context) {
     loadJSON(`/build/configs/${levelNumber}/tiles.json`),
     loadImage(`/build/configs/${levelNumber}/tiles.png`),
 
-    loadJSON('/build/configs/track-list.json'),
+    loadJSON('/build/sound/track-list.json'),
   ]);
 
   const map = new GameMap(context, levelMap, tilesImg, tilesConfig);
