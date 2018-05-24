@@ -30,6 +30,7 @@ gulp.task('build:sprites', (cb) => {
         imgName: `${spriteName}.png`,
         cssName: `${spriteName}.json`,
         cssTemplate: path.src.spritesTemplate,
+        cssOpts: { path: `${path.build.sprites.replace('./', '/')}${spriteName}.png` },
       }))
       .pipe(gulp.dest(path.build.sprites));
   });
