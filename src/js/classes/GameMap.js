@@ -1,99 +1,57 @@
 import Layer from './Layer';
+import Element from './Element';
 
 export default class GameMap {
-  constructor(options) {
-    const { layers = [] } = options;
+  constructor(map, spriteConfig) {
+    this.gridStep = 32;
+    this.layers = [];
 
-    layers.map((item) => {
-      const {
-        element, map, sprite,
-      } = item;
+    const backgroundLayer = new Layer(document.getElementById('background'));
+    this.layers.push(backgroundLayer);
 
-      // console.log('element', element);
-      // console.log('map', map);
-      // console.log('sprite', sprite);
+    const mainLayer = new Layer(document.getElementById('main'));
+    this.layers.push(mainLayer);
 
-      const layer = new Layer(element, map, sprite);
-      layer.draw();
+    const { elements = [] } = map.locations[0];
 
-      return layer;
+    elements.forEach((item) => {
+      item.ranges.forEach(([i1, j1, i2 = i1, j2 = j1]) => {
+        for (let i = i1; i <= i2; i += 1) {
+          for (let j = j1; j <= j2; j += 1) {
+            const options = {
+              x: i * this.gridStep,
+              y: j * this.gridStep,
+            };
+
+            let layer;
+
+            switch (item.type) {
+              case 'object':
+                layer = mainLayer;
+                options.spriteConfig = spriteConfig;
+                break;
+
+              case 'background':
+                layer = backgroundLayer;
+                options.spriteConfig = spriteConfig;
+                break;
+
+              default:
+                break;
+            }
+
+            const element = new Element(item.name, layer, options);
+
+            layer.addItem(element.getElementLink());
+          }
+        }
+      });
     });
   }
 
   draw() {
-    console.log('draw');
+    this.layers.forEach((layer) => {
+      layer.draw();
+    });
   }
-  // constructor(context, levelMap, tilesImg, tilesConfig) {
-  //   this.levelMap = levelMap;
-  //   this.tilesImg = tilesImg;
-  //   this.tilesConfig = tilesConfig;
-  //   this.context = context;
-  //   this.cellSize = 32;
-  //   this.vCellCount = 15;
-  //   this.hCellCount = 150;
-  // }
-
-  // addObject(alias, cellX, cellY) {
-  //   const dx = cellX * this.cellSize;
-  //   const dy = (this.vCellCount - cellY - 1) * this.cellSize;
-  //   const tilesList = this.tilesConfig;
-  //   const {
-  //     sx, sy, sWidth, sHeight,
-  //   } = tilesList[alias];
-
-  //   this.context.drawImage(this.tilesImg, sx, sy, sWidth, sHeight, dx, dy, sWidth, sHeight);
-  // }
-
-  // removeObject(alias, cellX, cellY) {
-  //   const dx = cellX * this.cellSize;
-  //   const dy = (this.vCellCount - 1 - cellY) * this.cellSize;
-  //   const tilesList = this.tilesConfig;
-  //   const {
-  //     sWidth, sHeight,
-  //   } = tilesList[alias];
-
-  //   this.context.clearRect(dx, dy, dx + sWidth, dy + sHeight);
-  // }
-
-  // draw() {
-  //   const tilesKeys = Object.keys(this.tilesConfig);
-  //   const backgroundList = this.levelMap.locations[0].backgrounds;
-  //   const objectList = this.levelMap.locations[0].objects;
-
-  //   Object.entries(backgroundList).map((item) => {
-  //     const itemName = item[0];
-  //     const itemList = item[1];
-
-  //     if (tilesKeys.includes(itemName)) {
-  //       itemList.map(position => this.addObject(itemName, ...position));
-  //     }
-
-  //     return true;
-  //   });
-
-  //   objectList.map((line, lineIndex) => {
-  //     [...line].forEach((item, i) => {
-  //       if (tilesKeys.includes(item)) {
-  //         this.addObject(item, lineIndex, i);
-  //       }
-  //     });
-
-  //     return true;
-  //   });
-  // }
-
-  // clear() {
-  //   const objectList = this.levelMap.locations[0].objects;
-  //   const tilesKeys = Object.keys(this.tilesConfig);
-
-  //   objectList.map((line, lineIndex) => {
-  //     [...line].forEach((item, i) => {
-  //       if (tilesKeys.includes(item)) {
-  //         this.removeObject(item, lineIndex, i);
-  //       }
-  //     });
-
-  //     return true;
-  //   });
-  // }
 }

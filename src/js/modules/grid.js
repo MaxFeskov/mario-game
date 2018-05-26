@@ -16,7 +16,7 @@ export default function drawGrid(ctx, step = 32) {
     context.lineTo(x, height);
     context.stroke();
 
-    context.fillText(x / step, x, 10);
+    context.fillText(x / step, x, height / 2);
   }
 
   for (let y = 0; y < height; y += step) {
