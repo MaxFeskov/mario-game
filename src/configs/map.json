@@ -115,6 +115,20 @@
           ]
         },
         {
+          "name": "flagpole",
+          "type": "object",
+          "ranges": [
+            [198, 3, 198, 11]
+          ]
+        },
+        {
+          "name": "flagtop",
+          "type": "object",
+          "ranges": [
+            [198, 2]
+          ]
+        },
+        {
           "name": "cloud",
           "type": "background",
           "ranges": [
