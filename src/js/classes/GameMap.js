@@ -21,28 +21,22 @@ export default class GameMap {
             const options = {
               x: i * this.gridStep,
               y: j * this.gridStep,
+              spriteConfig,
             };
 
-            let layer;
+            let element;
 
             switch (item.type) {
-              case 'object':
-                layer = mainLayer;
-                options.spriteConfig = spriteConfig;
-                break;
-
               case 'background':
-                layer = backgroundLayer;
-                options.spriteConfig = spriteConfig;
+                element = new Element(item.name, backgroundLayer, options);
+                backgroundLayer.addItem(element.getElementLink());
                 break;
 
               default:
+                element = new Element(item.name, mainLayer, options);
+                mainLayer.addItem(element.getElementLink());
                 break;
             }
-
-            const element = new Element(item.name, layer, options);
-
-            layer.addItem(element.getElementLink());
           }
         }
       });
