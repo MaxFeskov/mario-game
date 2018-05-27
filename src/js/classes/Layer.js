@@ -20,10 +20,16 @@ export default class Layer {
   }
 
   drawItem(element) {
-    const {
-      image, x, y, sx, sy, sWidth, sHeight,
-    } = element;
+    if (element.icon) {
+      const {
+        x, y,
+      } = element;
 
-    this.context.drawImage(image, sx, sy, sWidth, sHeight, x, y, sWidth, sHeight);
+      const {
+        image, sx, sy, sWidth, sHeight,
+      } = element.icon;
+
+      this.context.drawImage(image, sx, sy, sWidth, sHeight, x, y, sWidth, sHeight);
+    }
   }
 }

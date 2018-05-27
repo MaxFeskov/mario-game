@@ -7,9 +7,17 @@ import SoundManager from './classes/SoundManager';
 import GameMap from './classes/GameMap';
 
 async function main() {
-  const [map, objectsSpriteConfig, trackList] = await Promise.all([
+  const [
+    map,
+    objectsSpriteConfig,
+    backgroundsSpriteConfig,
+    heroSpriteConfig,
+    trackList,
+  ] = await Promise.all([
     loadJSON('/build/configs/map.json'),
     loadSprite('/build/sprite/objects.json'),
+    loadSprite('/build/sprite/backgrounds.json'),
+    loadSprite('/build/sprite/hero.json'),
     loadJSON('/build/sound/track-list.json'),
   ]);
 
@@ -25,7 +33,13 @@ async function main() {
     );
   }
 
-  const gameMap = new GameMap(map, objectsSpriteConfig);
+  const spriteConfig = {
+    objects: objectsSpriteConfig,
+    backgrounds: backgroundsSpriteConfig,
+    hero: heroSpriteConfig,
+  };
+
+  const gameMap = new GameMap(map, spriteConfig);
   gameMap.draw();
 }
 

@@ -3,8 +3,11 @@ import Sprite from './Sprite';
 export default class Element {
   constructor(name, Layer, options) {
     const {
-      x, y, spriteConfig,
+      i, j, gridStep, spriteConfig,
     } = options;
+
+    const x = i * gridStep;
+    const y = j * gridStep;
 
     this.item = {};
     this.Layer = Layer;
@@ -12,12 +15,14 @@ export default class Element {
     const sprite = new Sprite(spriteConfig);
     const itemSprite = sprite.getItem(name);
 
+    this.item = {
+      name,
+      x,
+      y,
+    };
+
     if (itemSprite) {
-      this.item = Object.assign({}, itemSprite, {
-        name,
-        x,
-        y,
-      });
+      this.item.icon = itemSprite;
     }
   }
 

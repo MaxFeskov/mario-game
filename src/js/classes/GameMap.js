@@ -19,24 +19,35 @@ export default class GameMap {
         for (let i = i1; i <= i2; i += 1) {
           for (let j = j1; j <= j2; j += 1) {
             const options = {
-              x: i * this.gridStep,
-              y: j * this.gridStep,
-              spriteConfig,
+              i,
+              j,
+              gridStep: this.gridStep,
             };
 
             let element;
+            let layer;
 
-            switch (item.type) {
-              case 'background':
-                element = new Element(item.name, backgroundLayer, options);
-                backgroundLayer.addItem(element.getElementLink());
-                break;
+            if (item.type === 'background') {
+              layer = backgroundLayer;
+              options.spriteConfig = spriteConfig.backgrounds;
+              element = new Element(item.name, layer, options);
+            } else {
+              layer = mainLayer;
 
-              default:
-                element = new Element(item.name, mainLayer, options);
-                mainLayer.addItem(element.getElementLink());
-                break;
+              switch (item.type) {
+                case 'object':
+                  options.spriteConfig = spriteConfig.objects;
+                  element = new Element(item.name, layer, options);
+                  break;
+
+                default:
+                  options.spriteConfig = spriteConfig.objects;
+                  element = new Element(item.name, layer, options);
+                  break;
+              }
             }
+
+            layer.addItem(element.getElementLink());
           }
         }
       });

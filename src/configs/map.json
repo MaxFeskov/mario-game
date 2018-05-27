@@ -3,7 +3,7 @@
     "0": {
       "elements": [
         {
-          "name": "background",
+          "name": "sky",
           "type": "background",
           "ranges": [
             [0, 0, 223, 14]
