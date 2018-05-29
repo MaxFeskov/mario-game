@@ -11,9 +11,10 @@ export default class Element {
 
     this.item = {};
     this.Layer = Layer;
+    this.name = name;
+    this.spriteConfig = spriteConfig;
 
-    const sprite = new Sprite(spriteConfig);
-    const itemSprite = sprite.getItem(name);
+    const itemSprite = this.getBaseIcon();
 
     this.item = {
       name,
@@ -28,6 +29,11 @@ export default class Element {
 
   getElementLink() {
     return this.item;
+  }
+
+  getBaseIcon() {
+    const sprite = new Sprite(this.spriteConfig);
+    return sprite.getItem(this.name);
   }
 
   destroy() {

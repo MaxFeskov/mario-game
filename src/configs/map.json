@@ -3,6 +3,13 @@
     "0": {
       "elements": [
         {
+          "name": "hero",
+          "type": "hero",
+          "ranges": [
+            [2, 12]
+          ]
+        },
+        {
           "name": "sky",
           "type": "background",
           "ranges": [

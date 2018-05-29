@@ -3,8 +3,8 @@ import {
 } from './modules/loaders';
 
 import drawGrid from './modules/grid';
-import SoundManager from './classes/SoundManager';
 import GameMap from './classes/GameMap';
+import SoundManager from './classes/SoundManager';
 
 async function main() {
   const [

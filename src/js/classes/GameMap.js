@@ -1,5 +1,6 @@
 import Layer from './Layer';
 import Element from './Element';
+import Hero from './Hero';
 
 export default class GameMap {
   constructor(map, spriteConfig) {
@@ -35,9 +36,9 @@ export default class GameMap {
               layer = mainLayer;
 
               switch (item.type) {
-                case 'object':
-                  options.spriteConfig = spriteConfig.objects;
-                  element = new Element(item.name, layer, options);
+                case 'hero':
+                  options.spriteConfig = spriteConfig.hero;
+                  element = new Hero(item.name, layer, options);
                   break;
 
                 default:
