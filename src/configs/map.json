@@ -1,12 +1,17 @@
 {
   "locations": {
     "0": {
+      "settings": {
+        "width": 224,
+        "height": 15,
+        "camera": [5, 0]
+      },
       "elements": [
         {
           "name": "hero",
           "type": "hero",
           "ranges": [
-            [2, 12]
+            [5, 12]
           ]
         },
         {
@@ -28,7 +33,7 @@
         },
         {
           "name": "box",
-          "type": "object",
+          "type": "box",
           "ranges": [
             [16, 9],
             [21, 9],

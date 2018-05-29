@@ -31,6 +31,10 @@ export default class Timer {
     this.tasks.delete(task);
   }
 
+  clearTask() {
+    this.tasks = new Set();
+  }
+
   start() {
     if (this.TimerID) {
       this.stop(this.TimerID);

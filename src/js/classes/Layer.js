@@ -1,8 +1,20 @@
+import Timer from './Timer';
+
 export default class Layer {
-  constructor(canvas) {
+  constructor(canvas, map) {
     const context = canvas.getContext('2d');
+    this.width = canvas.width;
+    this.height = canvas.height;
     this.context = context;
+    this.needRedraw = true;
     this.objects = new Set();
+    this.map = map;
+
+    const timer = new Timer();
+    timer.addTask(() => {
+      this.draw();
+    });
+    timer.start();
   }
 
   addItem(item) {
@@ -13,13 +25,25 @@ export default class Layer {
     this.objects.delete(item);
   }
 
-  draw() {
-    this.objects.forEach((element) => {
-      this.drawItem(element);
-    });
+  update() {
+    this.needRedraw = true;
   }
 
-  drawItem(element) {
+  draw() {
+    if (this.needRedraw) {
+      this.context.clearRect(0, 0, this.width, this.height);
+
+      const dx = this.map.offset.x;
+
+      this.objects.forEach((element) => {
+        this.drawItem(element, dx);
+      });
+
+      this.needRedraw = false;
+    }
+  }
+
+  drawItem(element, dx) {
     if (element.icon) {
       const {
         x, y,
@@ -29,7 +53,9 @@ export default class Layer {
         image, sx, sy, sWidth, sHeight,
       } = element.icon;
 
-      this.context.drawImage(image, sx, sy, sWidth, sHeight, x, y, sWidth, sHeight);
+      if (x - this.width <= dx && dx <= x + sWidth) {
+        this.context.drawImage(image, sx, sy, sWidth, sHeight, x - dx, y, sWidth, sHeight);
+      }
     }
   }
 }

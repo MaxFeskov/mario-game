@@ -27,7 +27,7 @@ async function main() {
       {
         autoplay: false,
         repeat: true,
-        volume: 0.1,
+        volume: 0.5,
       },
       'main-theme',
     );
@@ -40,13 +40,13 @@ async function main() {
   };
 
   const gameMap = new GameMap(map, spriteConfig);
-  gameMap.draw();
+  // gameMap.draw();
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  const info = document.getElementById('background');
+  const info = document.getElementById('info');
   const infoContext = info.getContext('2d');
-  drawGrid(infoContext);
+  // drawGrid(infoContext);
 
   main();
 });

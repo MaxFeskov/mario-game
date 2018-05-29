@@ -1,19 +1,32 @@
 import Layer from './Layer';
 import Element from './Element';
 import Hero from './Hero';
+import Box from './Box';
 
 export default class GameMap {
   constructor(map, spriteConfig) {
+    const {
+      elements = [], settings = {},
+    } = map.locations[0];
+
     this.gridStep = 32;
     this.layers = [];
+    this.width = settings.width * this.gridStep;
+    this.height = settings.height * this.gridStep;
+    this.offset = {
+      x: 0,
+      y: 0,
+    };
+    this.camera = {
+      x: settings.camera[0] * this.gridStep || 0,
+      y: settings.camera[1] * this.gridStep || 0,
+    };
 
-    const backgroundLayer = new Layer(document.getElementById('background'));
+    const backgroundLayer = new Layer(document.getElementById('background'), this);
     this.layers.push(backgroundLayer);
 
-    const mainLayer = new Layer(document.getElementById('main'));
+    const mainLayer = new Layer(document.getElementById('main'), this);
     this.layers.push(mainLayer);
-
-    const { elements = [] } = map.locations[0];
 
     elements.forEach((item) => {
       item.ranges.forEach(([i1, j1, i2 = i1, j2 = j1]) => {
@@ -38,7 +51,17 @@ export default class GameMap {
               switch (item.type) {
                 case 'hero':
                   options.spriteConfig = spriteConfig.hero;
+                  options.camera = this.camera;
+                  options.map = {
+                    width: this.width,
+                    height: this.height,
+                  };
                   element = new Hero(item.name, layer, options);
+                  break;
+
+                case 'box':
+                  options.spriteConfig = spriteConfig.objects;
+                  element = new Box(item.name, layer, options);
                   break;
 
                 default:
@@ -55,9 +78,16 @@ export default class GameMap {
     });
   }
 
-  draw() {
+  getOffset() {
+    return this.offset;
+  }
+
+  move(x, y) {
+    this.offset.x = x;
+    this.offset.y = y;
+
     this.layers.forEach((layer) => {
-      layer.draw();
+      layer.update();
     });
   }
 }

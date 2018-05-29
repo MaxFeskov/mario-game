@@ -12,9 +12,8 @@ export default class Element {
     this.item = {};
     this.Layer = Layer;
     this.name = name;
+    this.options = options;
     this.spriteConfig = spriteConfig;
-
-    const itemSprite = this.getBaseIcon();
 
     this.item = {
       name,
@@ -22,18 +21,35 @@ export default class Element {
       y,
     };
 
-    if (itemSprite) {
-      this.item.icon = itemSprite;
-    }
+    this.getBaseIcon();
+    this.Layer.update();
   }
 
   getElementLink() {
     return this.item;
   }
 
-  getBaseIcon() {
+  updateIcon(iconName) {
+    this.icon = iconName;
     const sprite = new Sprite(this.spriteConfig);
-    return sprite.getItem(this.name);
+    const itemSprite = sprite.getItem(iconName);
+
+    if (itemSprite) {
+      this.item.icon = itemSprite;
+    }
+  }
+
+  getBaseIcon() {
+    return this.updateIcon(this.name);
+  }
+
+  animate(icons) {
+    const iconCount = icons.length;
+    const nextIconNumber = (icons.indexOf(this.icon) + 1) % iconCount;
+    const nextIconName = icons[nextIconNumber];
+
+    this.updateIcon(nextIconName);
+    this.Layer.update();
   }
 
   destroy() {
