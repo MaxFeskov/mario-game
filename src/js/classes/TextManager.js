@@ -35,7 +35,7 @@ export default class TextManager {
   }
 
   removeText(textID, removeFormStorage = true) {
-    if (this.storage.hasOwnProperty(textID)) {
+    if (Object.keys(this.storage).includes(`${textID}`)) {
       const options = this.storage[textID];
       const {
         textAlign, y, width, height,
@@ -58,7 +58,7 @@ export default class TextManager {
   }
 
   replaceText(textID, newText) {
-    if (this.storage.hasOwnProperty(textID)) {
+    if (Object.keys(this.storage).includes(`${textID}`)) {
       const options = this.storage[textID];
       const {
         x, y,

@@ -1,10 +1,13 @@
+import FontFaceOnload from 'fontfaceonload';
+
 import {
   loadSprite, loadJSON,
 } from './modules/loaders';
 
-import drawGrid from './modules/grid';
+// import drawGrid from './modules/grid';
 import GameMap from './classes/GameMap';
 import SoundManager from './classes/SoundManager';
+import TextManager from './classes/TextManager';
 
 async function main() {
   const [
@@ -40,15 +43,19 @@ async function main() {
   };
 
   const gameMap = new GameMap(map, spriteConfig);
-  // gameMap.draw();
-}
 
-document.addEventListener('DOMContentLoaded', () => {
   const info = document.getElementById('info');
   const infoContext = info.getContext('2d');
   // drawGrid(infoContext);
 
-  main();
+  const textManager = new TextManager(infoContext);
+  const textID = textManager.addText('Super Mario Bros', 32, 32);
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  FontFaceOnload('Emulogic', { success() {
+    main();
+  } });
 });
 
 // var merged = new Set([...set1, ...set2, ...set3])
