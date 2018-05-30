@@ -52,11 +52,15 @@ export default class Hero extends Element {
     });
   }
 
-  goRight(speed = 32) {
-    this.timer = new Timer(5);
+  goRight(speed = 1) {
+    let timeBeforeSteps = 0;
 
-    this.timer.addTask(() => {
-      this.animate(['go-right', 'go-right-2']);
+    this.timer = new Timer();
+    this.timer.addTask((deltaTime, time) => {
+      if (time - timeBeforeSteps > 200) {
+        timeBeforeSteps = time;
+        this.animate(['go-right', 'go-right-2']);
+      }
 
       let { x } = this.item;
       x += speed;
@@ -92,11 +96,15 @@ export default class Hero extends Element {
     this.timer.start();
   }
 
-  goLeft(speed = -32) {
-    this.timer = new Timer(5);
+  goLeft(speed = -1) {
+    let timeBeforeSteps = 0;
 
-    this.timer.addTask(() => {
-      this.animate(['go-left', 'go-left-2']);
+    this.timer = new Timer();
+    this.timer.addTask((deltaTime, time) => {
+      if (time - timeBeforeSteps > 200) {
+        timeBeforeSteps = time;
+        this.animate(['go-left', 'go-left-2']);
+      }
 
       let { x } = this.item;
       x += speed;

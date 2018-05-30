@@ -10,7 +10,7 @@ export default class Timer {
       if (this.TimerID) {
         if (deltaTime >= this.deltaTime) {
           this.tasks.forEach((task) => {
-            task(deltaTime);
+            task(deltaTime, time);
           });
 
           this.lastTime = time;
