@@ -96,7 +96,7 @@ export default class Hero extends Element {
     this.timer.start();
   }
 
-  goLeft(speed = -1) {
+  goLeft(speed = 1) {
     let timeBeforeSteps = 0;
 
     this.timer = new Timer();
@@ -107,7 +107,7 @@ export default class Hero extends Element {
       }
 
       let { x } = this.item;
-      x += speed;
+      x -= speed;
 
       const { x: offsetX } = this.Layer.map.offset;
 

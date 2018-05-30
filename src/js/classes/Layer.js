@@ -7,7 +7,7 @@ export default class Layer {
     this.height = canvas.height;
     this.context = context;
     this.needRedraw = true;
-    this.objects = new Set();
+    this.objects = [];
     this.map = map;
 
     const timer = new Timer();
@@ -18,11 +18,15 @@ export default class Layer {
   }
 
   addItem(item) {
-    this.objects.add(item);
+    this.objects.push(item);
   }
 
   removeItem(item) {
-    this.objects.delete(item);
+    const index = this.objects.indexOf(item);
+
+    if (index !== -1) {
+      this.objects.splice(index, 1);
+    }
   }
 
   update() {
