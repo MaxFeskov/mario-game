@@ -4,8 +4,8 @@ import Timer from './Timer';
 import keys from '../modules/keyMap';
 
 export default class Hero extends Element {
-  constructor(name, Layer, options) {
-    super(name, Layer, options);
+  constructor(name, layer, options) {
+    super(name, layer, options);
 
     this.isGo = false;
     this.camera = {
@@ -15,44 +15,50 @@ export default class Hero extends Element {
 
     window.addEventListener('keydown', (e) => {
       if (this.isGo === false) {
-        if (e.keyCode === keys.left) {
-          this.isGo = true;
-          this.goLeft();
-        }
+        switch (e.keyCode) {
+          case keys.left:
+            this.goLeft();
+            break;
 
-        if (e.keyCode === keys.right) {
-          this.isGo = true;
-          this.goRight();
-        }
+          case keys.right:
+            this.goRight();
+            break;
 
-        if (e.keyCode === keys.down) {
-          this.isGo = true;
-          this.sitDown();
+          case keys.down:
+            this.sitDown();
+            break;
+
+          default:
+            break;
         }
       }
     });
 
     window.addEventListener('keyup', (e) => {
-      if (e.keyCode === keys.left) {
-        this.isGo = false;
-        this.stop();
-        this.updateIcon('left');
-      }
+      switch (e.keyCode) {
+        case keys.left:
+          this.stop();
+          this.updateIcon('left');
+          break;
 
-      if (e.keyCode === keys.right) {
-        this.isGo = false;
-        this.stop();
-        this.updateIcon('right');
-      }
+        case keys.right:
+          this.stop();
+          this.updateIcon('right');
+          break;
 
-      if (e.keyCode === keys.down) {
-        this.isGo = false;
-        this.updateIcon('right');
+        case keys.down:
+          this.updateIcon('right');
+          break;
+
+        default:
+          break;
       }
     });
   }
 
   goRight(speed = 1) {
+    this.isGo = true;
+
     let timeBeforeSteps = 0;
 
     this.timer = new Timer();
@@ -66,11 +72,11 @@ export default class Hero extends Element {
       x += speed;
 
       const mapWidth = this.options.map.width;
-      const layerWidth = this.Layer.width;
+      const layerWidth = this.layer.width;
       const iconWidth = this.item.icon.sWidth;
       const offsetCameraX = this.options.camera.x;
 
-      let dx = this.Layer.map.offset.x;
+      let offsetX = this.layer.map.offset.x;
 
       if (x > mapWidth - iconWidth) {
         x = mapWidth - iconWidth;
@@ -78,18 +84,21 @@ export default class Hero extends Element {
 
       this.item.x = x;
 
-      if (x > layerWidth - offsetCameraX + dx) {
-        dx = x + offsetCameraX - layerWidth;
+      let dx = x + offsetCameraX;
+      dx -= layerWidth;
 
-        if (dx < 0) {
-          dx = 0;
-        } else if (dx > mapWidth - layerWidth) {
-          dx = mapWidth - layerWidth;
+      if (offsetX < dx) {
+        offsetX = dx;
+
+        if (offsetX < 0) {
+          offsetX = 0;
+        } else if (offsetX > mapWidth - layerWidth) {
+          offsetX = mapWidth - layerWidth;
         }
 
-        this.Layer.map.move(dx, 0);
+        this.layer.map.move(offsetX, 0);
       } else {
-        this.Layer.update();
+        this.layer.update();
       }
     });
 
@@ -97,6 +106,8 @@ export default class Hero extends Element {
   }
 
   goLeft(speed = 1) {
+    this.isGo = true;
+
     let timeBeforeSteps = 0;
 
     this.timer = new Timer();
@@ -109,7 +120,7 @@ export default class Hero extends Element {
       let { x } = this.item;
       x -= speed;
 
-      const { x: offsetX } = this.Layer.map.offset;
+      const { x: offsetX } = this.layer.map.offset;
 
       if (x < 0) {
         x = 0;
@@ -119,17 +130,19 @@ export default class Hero extends Element {
 
       this.item.x = x;
 
-      this.Layer.update();
+      this.layer.update();
     });
 
     this.timer.start();
   }
 
   sitDown() {
+    this.isGo = false;
     this.updateIcon('sit-down');
   }
 
   stop() {
+    this.isGo = false;
     this.timer.stop();
     this.timer.clearTask();
   }

@@ -28,7 +28,7 @@ export default class SoundManager {
     audio.addEventListener('ended', () => {
       const next = Number(audio.dataset.current) + 1;
 
-      if (sound.queue[next] !== undefined) {
+      if (sound.queue[`${next}`] !== undefined) {
         audio.dataset.current = next;
         this.play(sound);
       } else if (repeat) {
@@ -48,11 +48,11 @@ export default class SoundManager {
     } = sound;
 
     const soundNumber = Number(audio.dataset.current);
-    const soundName = queue[soundNumber];
+    const soundName = queue[`${soundNumber}`];
 
     if (this.trackListName.includes(soundName)) {
       if (audio) {
-        const newSrc = this.trackList[soundName].track;
+        const newSrc = this.trackList[`${soundName}`].track;
 
         if (!audio.src.includes(newSrc)) {
           audio.src = newSrc;
