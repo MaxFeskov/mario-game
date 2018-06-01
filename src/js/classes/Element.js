@@ -12,6 +12,10 @@ export default class Element {
     this.name = name;
     this.layer = layer;
     this.options = options;
+    this.speed = {
+      x: 0,
+      y: 0,
+    };
 
     this.item = {
       name,

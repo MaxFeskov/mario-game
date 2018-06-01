@@ -1,3 +1,7 @@
+import {
+  searchCollisions, resolveCollisions,
+} from '../modules/collisions';
+
 import Element from './Element';
 import Timer from './Timer';
 
@@ -14,63 +18,88 @@ export default class Hero extends Element {
     };
 
     window.addEventListener('keydown', (e) => {
-      if (this.isGo === false) {
-        switch (e.keyCode) {
-          case keys.left:
-            this.goLeft();
-            break;
-
-          case keys.right:
-            this.goRight();
-            break;
-
-          case keys.down:
-            this.sitDown();
-            break;
-
-          default:
-            break;
-        }
-      }
-    });
-
-    window.addEventListener('keyup', (e) => {
       switch (e.keyCode) {
         case keys.left:
-          this.stop();
-          this.updateIcon('left');
+          this.speed.x = -1;
           break;
 
         case keys.right:
-          this.stop();
-          this.updateIcon('right');
+          this.speed.x = 1;
+          break;
+
+        case keys.up:
+          this.speed.y = -1;
           break;
 
         case keys.down:
-          this.updateIcon('right');
+          this.speed.y = 1;
           break;
 
         default:
           break;
       }
     });
-  }
 
-  goRight(speed = 1) {
-    this.isGo = true;
+    window.addEventListener('keyup', (e) => {
+      switch (e.keyCode) {
+        case keys.left:
+          this.speed.x = 0;
+          this.updateIcon('left');
+          break;
 
-    let timeBeforeSteps = 0;
+        case keys.right:
+          this.speed.x = 0;
+          this.updateIcon('right');
+          break;
+
+        case keys.up:
+          this.speed.y = 0;
+          break;
+
+        case keys.down:
+          this.speed.y = 0;
+          break;
+
+        default:
+          break;
+      }
+    });
+
+    this.timeBeforeSteps = 0;
 
     this.timer = new Timer();
     this.timer.addTask((deltaTime, time) => {
-      if (time - timeBeforeSteps > 200) {
-        timeBeforeSteps = time;
+      this.go(deltaTime, time);
+    });
+    this.timer.start();
+
+    // setTimeout(() => {
+    //   this.timer.stop();
+    // }, 1000);
+  }
+
+  go(deltaTIme, time) {
+    // console.log('deltaTIme', deltaTIme);
+    // console.log('time', time);
+    // console.log('timeBeforeSteps', this.timeBeforeSteps);
+
+    if (time - this.timeBeforeSteps > 200) {
+      this.timeBeforeSteps = time;
+
+      if (this.speed.x > 0) {
         this.animate(['go-right', 'go-right-2']);
+      } else if (this.speed.x < 0) {
+        this.animate(['go-left', 'go-left-2']);
       }
+    }
 
-      let { x } = this.item;
-      x += speed;
+    this.item.x += this.speed.x;
+    this.item.y += this.speed.y;
 
+    const collisionList = searchCollisions(this.layer.objects, this.item);
+    resolveCollisions(collisionList, this.item, { speed: this.speed });
+
+    if (this.speed.x > 0) {
       const mapWidth = this.options.map.width;
       const layerWidth = this.layer.width;
       const iconWidth = this.item.icon.sWidth;
@@ -78,13 +107,11 @@ export default class Hero extends Element {
 
       let offsetX = this.layer.map.offset.x;
 
-      if (x > mapWidth - iconWidth) {
-        x = mapWidth - iconWidth;
+      if (this.item.x > mapWidth - iconWidth) {
+        this.item.x = mapWidth - iconWidth;
       }
 
-      this.item.x = x;
-
-      let dx = x + offsetCameraX;
+      let dx = this.item.x + offsetCameraX;
       dx -= layerWidth;
 
       if (offsetX < dx) {
@@ -100,49 +127,120 @@ export default class Hero extends Element {
       } else {
         this.layer.update();
       }
-    });
-
-    this.timer.start();
-  }
-
-  goLeft(speed = 1) {
-    this.isGo = true;
-
-    let timeBeforeSteps = 0;
-
-    this.timer = new Timer();
-    this.timer.addTask((deltaTime, time) => {
-      if (time - timeBeforeSteps > 200) {
-        timeBeforeSteps = time;
-        this.animate(['go-left', 'go-left-2']);
-      }
-
-      let { x } = this.item;
-      x -= speed;
-
+    } else if (this.speed.x < 0) {
       const { x: offsetX } = this.layer.map.offset;
 
-      if (x < 0) {
-        x = 0;
-      } else if (x < offsetX) {
-        x = offsetX;
+      if (this.item.x < 0) {
+        this.item.x = 0;
+      } else if (this.item.x < offsetX) {
+        this.item.x = offsetX;
       }
 
-      this.item.x = x;
-
       this.layer.update();
-    });
+    }
 
-    this.timer.start();
+    if (this.speed.x !== 0 || this.speed.y !== 0) {
+      this.layer.update();
+    }
   }
 
+  // goRight() {
+  //   this.isGo = true;
+
+  //   let timeBeforeSteps = 0;
+
+  //   this.timer = new Timer();
+  //   this.timer.addTask((deltaTime, time) => {
+  //     if (time - timeBeforeSteps > 200) {
+  //       timeBeforeSteps = time;
+  //       this.animate(['go-right', 'go-right-2']);
+  //     }
+
+  //     this.item.x += this.speed.x;
+
+  //     const collisionList = searchCollisions(this.layer.objects, this.item);
+  //     resolveCollisions(collisionList, this.item, { speed: this.speed });
+
+  //     if (this.item.speed.x > 0) {
+  //       const mapWidth = this.options.map.width;
+  //       const layerWidth = this.layer.width;
+  //       const iconWidth = this.item.icon.sWidth;
+  //       const offsetCameraX = this.options.camera.x;
+
+  //       let offsetX = this.layer.map.offset.x;
+
+  //       if (this.item.x > mapWidth - iconWidth) {
+  //         this.item.x = mapWidth - iconWidth;
+  //       }
+
+  //       let dx = this.item.x + offsetCameraX;
+  //       dx -= layerWidth;
+
+  //       if (offsetX < dx) {
+  //         offsetX = dx;
+
+  //         if (offsetX < 0) {
+  //           offsetX = 0;
+  //         } else if (offsetX > mapWidth - layerWidth) {
+  //           offsetX = mapWidth - layerWidth;
+  //         }
+
+  //         this.layer.map.move(offsetX, 0);
+  //       } else {
+  //         this.layer.update();
+  //       }
+  //     } else if (this.item.speed.x < 0) {
+  //       const { x: offsetX } = this.layer.map.offset;
+
+  //       if (this.item.x < 0) {
+  //         this.item.x = 0;
+  //       } else if (this.item.x < offsetX) {
+  //         this.item.x = offsetX;
+  //       }
+
+  //       this.layer.update();
+  //     }
+  //   });
+
+  //   this.timer.start();
+  // }
+
+  // goLeft() {
+  //   this.isGo = true;
+
+  //   let timeBeforeSteps = 0;
+
+  //   this.timer = new Timer();
+  //   this.timer.addTask((deltaTime, time) => {
+  //     if (time - timeBeforeSteps > 200) {
+  //       timeBeforeSteps = time;
+  //       this.animate(['go-left', 'go-left-2']);
+  //     }
+
+  //     this.item.x += this.speed.x;
+
+  //     const collisionList = searchCollisions(this.layer.objects, this.item);
+  //     resolveCollisions(collisionList, this.item, { speed: this.speed });
+
+  //     const { x: offsetX } = this.layer.map.offset;
+
+  //     if (this.item.x < 0) {
+  //       this.item.x = 0;
+  //     } else if (this.item.x < offsetX) {
+  //       this.item.x = offsetX;
+  //     }
+
+  //     this.layer.update();
+  //   });
+
+  //   this.timer.start();
+  // }
+
   sitDown() {
-    this.isGo = false;
     this.updateIcon('sit-down');
   }
 
   stop() {
-    this.isGo = false;
     this.timer.stop();
     this.timer.clearTask();
   }
