@@ -1,58 +1,83 @@
-export function resolveCollisions(objectList, resolveObject, options) {
+export function minAbsValue(...values) {
+  const result = values.reduce((min, item) => {
+    if (Math.abs(item) === Math.min(Math.abs(min), Math.abs(item))) {
+      return item;
+    }
+    return min;
+  });
+
+  return result;
+}
+
+export function resolveCollision(objectList, resolveObject) {
   const item = resolveObject;
 
   const {
     sWidth, sHeight,
   } = item.icon;
 
-  let dx = 0;
-  let dy = 0;
-
   objectList.forEach((element) => {
-    if (options.speed.x > 0 && item.x > element.x - sWidth) {
-      dx = element.x - sWidth - item.x;
-    } else if (options.speed.x < 0 && item.x < element.x + element.icon.sWidth) {
-      dx = element.x + element.icon.sWidth - item.x;
-    }
+    const dx1 = element.x - sWidth - item.x;
+    const dx2 = element.x + element.icon.sWidth - item.x;
 
-    if (options.speed.y > 0 && item.y > element.y - sHeight) {
-      dy = element.y - sHeight - item.y;
-    } else if (options.speed.y < 0 && item.y < element.y + element.icon.sHeight) {
-      dy = element.y + element.icon.sHeight - item.y;
-    }
+    const dy1 = element.y - sHeight - item.y;
+    const dy2 = element.y + element.icon.sHeight - item.y;
 
-    if (Math.abs(dx) < Math.abs(dy) || dy === 0) {
+    const dx = minAbsValue(dx1, dx2);
+    const dy = minAbsValue(dy1, dy2);
+    const delta = minAbsValue(dx, dy);
+
+    if (delta === dx) {
       item.x += dx;
-    }
-
-    if (Math.abs(dy) < Math.abs(dx) || dx === 0) {
+    } else {
       item.y += dy;
     }
   });
 }
 
-export function searchCollisions(objectList, resolveObject) {
-  return objectList.filter((element) => {
-    if (resolveObject.x >= element.x + element.icon.sWidth) {
-      return false;
-    }
-
-    if (resolveObject.x <= element.x - resolveObject.icon.sWidth) {
-      return false;
-    }
-
-    if (resolveObject.y >= element.y + element.icon.sHeight) {
-      return false;
-    }
-
-    if (resolveObject.y <= element.y - resolveObject.icon.sHeight) {
-      return false;
-    }
-
-    if (element === resolveObject) {
-      return false;
-    }
-
-    return true;
+export function resolveCollisions(collisionList) {
+  collisionList.forEach((item) => {
+    resolveCollision(item.collisions, item.element);
   });
+}
+
+export function searchCollisions(objectList, resolveObjects) {
+  const collisionList = [];
+
+  resolveObjects.forEach((item) => {
+    const itemCollission = objectList.filter((element) => {
+      if (item.x >= element.x + element.icon.sWidth) {
+        return false;
+      }
+
+      if (item.x <= element.x - item.icon.sWidth) {
+        return false;
+      }
+
+      if (item.y >= element.y + element.icon.sHeight) {
+        return false;
+      }
+
+      if (item.y <= element.y - item.icon.sHeight) {
+        return false;
+      }
+
+      if (element === item) {
+        return false;
+      }
+
+      return true;
+    });
+
+    if (itemCollission.length && item.type !== 'object') {
+      const collisionItem = {
+        element: item,
+        collisions: itemCollission,
+      };
+
+      collisionList.push(collisionItem);
+    }
+  });
+
+  return collisionList;
 }

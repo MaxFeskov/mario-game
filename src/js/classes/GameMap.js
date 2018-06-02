@@ -44,6 +44,7 @@ export default class GameMap {
             if (item.type === 'background') {
               layer = backgroundLayer;
               options.spriteConfig = spriteConfig.backgrounds;
+              options.type = 'object';
               element = new Element(item.name, layer, options);
             } else {
               layer = mainLayer;
@@ -51,6 +52,7 @@ export default class GameMap {
               switch (item.type) {
                 case 'hero':
                   options.spriteConfig = spriteConfig.hero;
+                  options.type = 'hero';
                   options.camera = this.camera;
                   options.map = {
                     width: this.width,
@@ -61,11 +63,13 @@ export default class GameMap {
 
                 case 'box':
                   options.spriteConfig = spriteConfig.objects;
+                  options.type = 'object';
                   element = new Box(item.name, layer, options);
                   break;
 
                 default:
                   options.spriteConfig = spriteConfig.objects;
+                  options.type = 'object';
                   element = new Element(item.name, layer, options);
                   break;
               }

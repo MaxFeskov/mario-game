@@ -72,17 +72,9 @@ export default class Hero extends Element {
       this.go(deltaTime, time);
     });
     this.timer.start();
-
-    // setTimeout(() => {
-    //   this.timer.stop();
-    // }, 1000);
   }
 
   go(deltaTIme, time) {
-    // console.log('deltaTIme', deltaTIme);
-    // console.log('time', time);
-    // console.log('timeBeforeSteps', this.timeBeforeSteps);
-
     if (time - this.timeBeforeSteps > 200) {
       this.timeBeforeSteps = time;
 
@@ -96,8 +88,8 @@ export default class Hero extends Element {
     this.item.x += this.speed.x;
     this.item.y += this.speed.y;
 
-    const collisionList = searchCollisions(this.layer.objects, this.item);
-    resolveCollisions(collisionList, this.item, { speed: this.speed });
+    const collisionList = searchCollisions(this.layer.objects, [this.item]);
+    resolveCollisions(collisionList);
 
     if (this.speed.x > 0) {
       const mapWidth = this.options.map.width;
@@ -143,98 +135,6 @@ export default class Hero extends Element {
       this.layer.update();
     }
   }
-
-  // goRight() {
-  //   this.isGo = true;
-
-  //   let timeBeforeSteps = 0;
-
-  //   this.timer = new Timer();
-  //   this.timer.addTask((deltaTime, time) => {
-  //     if (time - timeBeforeSteps > 200) {
-  //       timeBeforeSteps = time;
-  //       this.animate(['go-right', 'go-right-2']);
-  //     }
-
-  //     this.item.x += this.speed.x;
-
-  //     const collisionList = searchCollisions(this.layer.objects, this.item);
-  //     resolveCollisions(collisionList, this.item, { speed: this.speed });
-
-  //     if (this.item.speed.x > 0) {
-  //       const mapWidth = this.options.map.width;
-  //       const layerWidth = this.layer.width;
-  //       const iconWidth = this.item.icon.sWidth;
-  //       const offsetCameraX = this.options.camera.x;
-
-  //       let offsetX = this.layer.map.offset.x;
-
-  //       if (this.item.x > mapWidth - iconWidth) {
-  //         this.item.x = mapWidth - iconWidth;
-  //       }
-
-  //       let dx = this.item.x + offsetCameraX;
-  //       dx -= layerWidth;
-
-  //       if (offsetX < dx) {
-  //         offsetX = dx;
-
-  //         if (offsetX < 0) {
-  //           offsetX = 0;
-  //         } else if (offsetX > mapWidth - layerWidth) {
-  //           offsetX = mapWidth - layerWidth;
-  //         }
-
-  //         this.layer.map.move(offsetX, 0);
-  //       } else {
-  //         this.layer.update();
-  //       }
-  //     } else if (this.item.speed.x < 0) {
-  //       const { x: offsetX } = this.layer.map.offset;
-
-  //       if (this.item.x < 0) {
-  //         this.item.x = 0;
-  //       } else if (this.item.x < offsetX) {
-  //         this.item.x = offsetX;
-  //       }
-
-  //       this.layer.update();
-  //     }
-  //   });
-
-  //   this.timer.start();
-  // }
-
-  // goLeft() {
-  //   this.isGo = true;
-
-  //   let timeBeforeSteps = 0;
-
-  //   this.timer = new Timer();
-  //   this.timer.addTask((deltaTime, time) => {
-  //     if (time - timeBeforeSteps > 200) {
-  //       timeBeforeSteps = time;
-  //       this.animate(['go-left', 'go-left-2']);
-  //     }
-
-  //     this.item.x += this.speed.x;
-
-  //     const collisionList = searchCollisions(this.layer.objects, this.item);
-  //     resolveCollisions(collisionList, this.item, { speed: this.speed });
-
-  //     const { x: offsetX } = this.layer.map.offset;
-
-  //     if (this.item.x < 0) {
-  //       this.item.x = 0;
-  //     } else if (this.item.x < offsetX) {
-  //       this.item.x = offsetX;
-  //     }
-
-  //     this.layer.update();
-  //   });
-
-  //   this.timer.start();
-  // }
 
   sitDown() {
     this.updateIcon('sit-down');
