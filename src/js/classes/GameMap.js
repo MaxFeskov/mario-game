@@ -118,6 +118,12 @@ export default class GameMap {
     }
   }
 
+  init() {
+    this.layers.forEach((layer) => {
+      layer.update();
+    });
+  }
+
   getOffset() {
     return this.offset;
   }

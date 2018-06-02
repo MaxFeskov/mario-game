@@ -28,7 +28,7 @@ export default class TextManager {
       height,
     });
 
-    this.storage[textID] = textOptions;
+    this.storage[`${textID}`] = textOptions;
     this.context.restore();
 
     return textID;
@@ -36,7 +36,7 @@ export default class TextManager {
 
   removeText(textID, removeFormStorage = true) {
     if (Object.keys(this.storage).includes(`${textID}`)) {
-      const options = this.storage[textID];
+      const options = this.storage[`${textID}`];
       const {
         textAlign, y, width, height,
       } = options;
@@ -50,7 +50,7 @@ export default class TextManager {
       }
 
       if (removeFormStorage) {
-        delete this.storage[textID];
+        delete this.storage[`${textID}`];
       }
 
       this.context.clearRect(x, y, width, height);
@@ -59,7 +59,7 @@ export default class TextManager {
 
   replaceText(textID, newText) {
     if (Object.keys(this.storage).includes(`${textID}`)) {
-      const options = this.storage[textID];
+      const options = this.storage[`${textID}`];
       const {
         x, y,
       } = options;

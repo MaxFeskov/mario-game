@@ -43,13 +43,14 @@ async function main() {
   };
 
   const gameMap = new GameMap(map, spriteConfig);
+  gameMap.init();
 
   const info = document.getElementById('info');
   const infoContext = info.getContext('2d');
   // drawGrid(infoContext);
 
   const textManager = new TextManager(infoContext);
-  const textID = textManager.addText('Super Mario Bros', 32, 32);
+  textManager.addText('Super Mario Bros', 32, 32);
 }
 
 document.addEventListener('DOMContentLoaded', () => {

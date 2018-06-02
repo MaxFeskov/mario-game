@@ -17,11 +17,11 @@ export function resolveCollision(objectList, resolveObject) {
   } = item.icon;
 
   objectList.forEach((element) => {
-    const dx1 = element.x - sWidth - item.x;
-    const dx2 = element.x + element.icon.sWidth - item.x;
+    const dx1 = element.x - (sWidth + item.x);
+    const dx2 = element.x + (element.icon.sWidth - item.x);
 
-    const dy1 = element.y - sHeight - item.y;
-    const dy2 = element.y + element.icon.sHeight - item.y;
+    const dy1 = element.y - (sHeight + item.y);
+    const dy2 = element.y + (element.icon.sHeight - item.y);
 
     const dx = minAbsValue(dx1, dx2);
     const dy = minAbsValue(dy1, dy2);
