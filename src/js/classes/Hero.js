@@ -20,19 +20,19 @@ export default class Hero extends Element {
     window.addEventListener('keydown', (e) => {
       switch (e.keyCode) {
         case keys.left:
-          this.speed.x = -1;
+          this.speed.x = -2;
           break;
 
         case keys.right:
-          this.speed.x = 1;
+          this.speed.x = 2;
           break;
 
         case keys.up:
-          this.speed.y = -1;
+          this.speed.y = -2;
           break;
 
         case keys.down:
-          this.speed.y = 1;
+          this.speed.y = 2;
           break;
 
         default:
@@ -53,11 +53,19 @@ export default class Hero extends Element {
           break;
 
         case keys.up:
-          this.speed.y = 0;
+          if (this.layer.map.gravity) {
+            this.speed.y = 1;
+          } else {
+            this.speed.y = 0;
+          }
           break;
 
         case keys.down:
-          this.speed.y = 0;
+          if (this.layer.map.gravity) {
+            this.speed.y = 1;
+          } else {
+            this.speed.y = 0;
+          }
           break;
 
         default:

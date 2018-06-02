@@ -4,7 +4,8 @@
       "settings": {
         "width": 224,
         "height": 15,
-        "camera": [5, 0]
+        "camera": [5, 0],
+        "gravity": true
       },
       "elements": [
         {

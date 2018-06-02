@@ -9,6 +9,7 @@ export default class GameMap {
       elements = [], settings = {},
     } = map.locations[0];
 
+    this.gravity = settings.gravity || false;
     this.gridStep = 32;
     this.layers = [];
     this.width = settings.width * this.gridStep;
