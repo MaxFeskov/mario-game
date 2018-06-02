@@ -23,7 +23,8 @@ export default class GameMap {
       y: settings.camera[1] * this.gridStep || 0,
     };
 
-    const backgroundLayer = new Layer(document.getElementById('background'), this);
+    const backgroundColor = settings.background;
+    const backgroundLayer = new Layer(document.getElementById('background'), this, { backgroundColor });
     this.layers.push(backgroundLayer);
 
     const mainLayer = new Layer(document.getElementById('main'), this);

@@ -5,7 +5,8 @@
         "width": 224,
         "height": 15,
         "camera": [5, 0],
-        "gravity": true
+        "gravity": true,
+        "background": "#5c94fc"
       },
       "elements": [
         {
@@ -13,13 +14,6 @@
           "type": "hero",
           "ranges": [
             [5, 12]
-          ]
-        },
-        {
-          "name": "sky",
-          "type": "background",
-          "ranges": [
-            [0, 0, 223, 14]
           ]
         },
         {

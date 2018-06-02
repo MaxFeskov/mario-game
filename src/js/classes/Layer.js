@@ -1,8 +1,10 @@
 import Timer from './Timer';
 
 export default class Layer {
-  constructor(canvas, map) {
+  constructor(element, map, options = {}) {
+    const canvas = element;
     const context = canvas.getContext('2d');
+    canvas.style.backgroundColor = options.backgroundColor || 'transparent';
     this.width = canvas.width;
     this.height = canvas.height;
     this.context = context;
