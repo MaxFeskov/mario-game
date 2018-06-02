@@ -9,6 +9,7 @@ export default class GameMap {
       elements = [], settings = {},
     } = map.locations[0];
 
+    this.settings = settings;
     this.gravity = settings.gravity || false;
     this.gridStep = 32;
     this.layers = [];
@@ -34,54 +35,87 @@ export default class GameMap {
       item.ranges.forEach(([i1, j1, i2 = i1, j2 = j1]) => {
         for (let i = i1; i <= i2; i += 1) {
           for (let j = j1; j <= j2; j += 1) {
-            const options = {
-              i,
-              j,
-              gridStep: this.gridStep,
-            };
-
-            let element;
-            let layer;
-
             if (item.type === 'background') {
-              layer = backgroundLayer;
-              options.spriteConfig = spriteConfig.backgrounds;
-              options.type = 'object';
-              element = new Element(item.name, layer, options);
+              this.addItem(item, {
+                i,
+                j,
+                layer: backgroundLayer,
+                sprite: spriteConfig.backgrounds,
+              });
             } else {
-              layer = mainLayer;
-
-              switch (item.type) {
-                case 'hero':
-                  options.spriteConfig = spriteConfig.hero;
-                  options.type = 'hero';
-                  options.camera = this.camera;
-                  options.map = {
-                    width: this.width,
-                    height: this.height,
-                  };
-                  element = new Hero(item.name, layer, options);
-                  break;
-
-                case 'box':
-                  options.spriteConfig = spriteConfig.objects;
-                  options.type = 'object';
-                  element = new Box(item.name, layer, options);
-                  break;
-
-                default:
-                  options.spriteConfig = spriteConfig.objects;
-                  options.type = 'object';
-                  element = new Element(item.name, layer, options);
-                  break;
-              }
+              this.addItem(item, {
+                i,
+                j,
+                layer: mainLayer,
+                sprite: spriteConfig.objects,
+              });
             }
-
-            layer.addItem(element.getElementLink());
           }
         }
       });
     });
+  }
+
+  addItem(item, options) {
+    const {
+      i, j,
+    } = options;
+
+    const repeatRangesStep = item.repeatRangesStep || [];
+
+    let stepX = 1;
+    let stepY = 1;
+    let maxPosX = i;
+    let maxPosY = j;
+
+    if (repeatRangesStep[0] > 0) {
+      ({ 0: stepX } = repeatRangesStep);
+      maxPosX = this.settings.width;
+    }
+
+    if (repeatRangesStep[1] > 0) {
+      ({ 1: stepY } = repeatRangesStep);
+      maxPosY = this.settings.height;
+    }
+
+    for (let posX = i; posX <= maxPosX; posX += stepX) {
+      for (let posY = j; posY <= maxPosY; posY += stepY) {
+        const elementOptions = {
+          x: posX * this.gridStep,
+          y: posY * this.gridStep,
+        };
+
+        let element;
+        const {
+          layer, sprite,
+        } = options;
+
+        if (item.type === 'background') {
+          elementOptions.spriteConfig = sprite;
+          element = new Element(item.name, layer, elementOptions);
+        } else {
+          switch (item.type) {
+            case 'hero':
+              elementOptions.spriteConfig = sprite;
+              elementOptions.type = 'personage';
+              element = new Hero(item.name, layer, elementOptions);
+              break;
+
+            case 'box':
+              elementOptions.spriteConfig = sprite;
+              element = new Box(item.name, layer, elementOptions);
+              break;
+
+            default:
+              elementOptions.spriteConfig = sprite;
+              element = new Element(item.name, layer, elementOptions);
+              break;
+          }
+        }
+
+        layer.addItem(element.getElementLink());
+      }
+    }
   }
 
   getOffset() {

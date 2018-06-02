@@ -3,11 +3,8 @@ import Sprite from './Sprite';
 export default class Element {
   constructor(name, layer, options) {
     const {
-      i, j, gridStep, type,
+      x, y, type = 'object',
     } = options;
-
-    const x = i * gridStep;
-    const y = j * gridStep;
 
     this.name = name;
     this.layer = layer;

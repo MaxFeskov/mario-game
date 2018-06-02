@@ -44,12 +44,12 @@ export default class Hero extends Element {
       switch (e.keyCode) {
         case keys.left:
           this.speed.x = 0;
-          this.updateIcon('left');
+          this.updateIcon('mario-left');
           break;
 
         case keys.right:
           this.speed.x = 0;
-          this.updateIcon('right');
+          this.updateIcon('mario-right');
           break;
 
         case keys.up:
@@ -87,9 +87,9 @@ export default class Hero extends Element {
       this.timeBeforeSteps = time;
 
       if (this.speed.x > 0) {
-        this.animate(['go-right', 'go-right-2']);
+        this.animate(['mario-go-right', 'mario-go-right-2']);
       } else if (this.speed.x < 0) {
-        this.animate(['go-left', 'go-left-2']);
+        this.animate(['mario-go-left', 'mario-go-left-2']);
       }
     }
 
@@ -100,10 +100,10 @@ export default class Hero extends Element {
     resolveCollisions(collisionList);
 
     if (this.speed.x > 0) {
-      const mapWidth = this.options.map.width;
+      const mapWidth = this.layer.map.width;
       const layerWidth = this.layer.width;
       const iconWidth = this.item.icon.sWidth;
-      const offsetCameraX = this.options.camera.x;
+      const offsetCameraX = this.layer.map.camera.x;
 
       let offsetX = this.layer.map.offset.x;
 
@@ -145,7 +145,7 @@ export default class Hero extends Element {
   }
 
   sitDown() {
-    this.updateIcon('sit-down');
+    this.updateIcon('mario-sit-down');
   }
 
   stop() {
@@ -154,6 +154,6 @@ export default class Hero extends Element {
   }
 
   getBaseIcon() {
-    return this.updateIcon('right');
+    return this.updateIcon('mario-right');
   }
 }

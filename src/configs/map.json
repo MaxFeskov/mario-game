@@ -140,91 +140,65 @@
           "type": "background",
           "ranges": [
             [8, 3],
-            [19, 2],
-            [56, 3],
-            [67, 2],
-            [104, 3],
-            [115, 2],
-            [152, 3],
-            [163, 2],
-            [200, 3],
-            [211, 2]
-          ]
+            [19, 2]
+          ],
+          "repeatRangesStep": [48]
         },
         {
           "name": "cloud_2",
           "type": "background",
           "ranges": [
-            [36, 2],
-            [84, 2],
-            [132, 2],
-            [180, 2]
-          ]
+            [36, 2]
+          ],
+          "repeatRangesStep": [48]
         },
         {
           "name": "cloud_3",
           "type": "background",
           "ranges": [
-            [27, 3],
-            [75, 3],
-            [123, 3],
-            [171, 3],
-            [219, 3]
-          ]
+            [27, 3]
+          ],
+          "repeatRangesStep": [48]
         },
         {
           "name": "hill",
           "type": "background",
           "ranges": [
-            [16, 11],
-            [64, 11],
-            [112, 11],
-            [160, 11],
-            [208, 11]
-          ]
+            [16, 11]
+          ],
+          "repeatRangesStep": [48]
         },
         {
           "name": "hill_big",
           "type": "background",
           "ranges": [
-            [0, 10],
-            [48, 10],
-            [96, 10],
-            [144, 10],
-            [192, 10]
-          ]
+            [0, 10]
+          ],
+          "repeatRangesStep": [48]
         },
         {
           "name": "bush",
           "type": "background",
           "ranges": [
-            [23, 12],
-            [71, 12],
-            [119, 12],
-            [167, 12],
-            [215, 12]
-          ]
+            [23, 12]
+          ],
+          "repeatRangesStep": [48]
         },
         {
           "name": "bush_2",
           "type": "background",
           "ranges": [
-            [41, 12],
-            [89, 12],
-            [137, 12],
-            [185, 12]
-          ]
+            [41, 12]
+          ],
+          "repeatRangesStep": [48]
         },
         {
           "name": "bush_3",
           "type": "background",
           "ranges": [
-            [11, 12],
-            [59, 12],
-            [107, 12],
-            [155, 12],
-            [203, 12]
-          ]
+            [11, 12]
+          ],
+          "repeatRangesStep": [48]
         },
         {
           "name": "castle",
