@@ -10,17 +10,10 @@ import SoundManager from './classes/SoundManager';
 import TextManager from './classes/TextManager';
 
 async function main() {
-  const [
-    map,
-    objectsSpriteConfig,
-    backgroundsSpriteConfig,
-    heroSpriteConfig,
-    trackList,
-  ] = await Promise.all([
+  const [map, objectsSpriteConfig, backgroundsSpriteConfig, trackList] = await Promise.all([
     loadJSON('/build/configs/map.json'),
     loadSprite('/build/sprite/objects.json'),
     loadSprite('/build/sprite/backgrounds.json'),
-    loadSprite('/build/sprite/hero.json'),
     loadJSON('/build/sound/track-list.json'),
   ]);
 
@@ -28,7 +21,7 @@ async function main() {
     const soundManager = new SoundManager(trackList);
     soundManager.add(
       {
-        autoplay: false,
+        autoplay: true,
         repeat: true,
         volume: 0.5,
       },
@@ -39,7 +32,6 @@ async function main() {
   const spriteConfig = {
     objects: objectsSpriteConfig,
     backgrounds: backgroundsSpriteConfig,
-    hero: heroSpriteConfig,
   };
 
   const gameMap = new GameMap(map, spriteConfig);
