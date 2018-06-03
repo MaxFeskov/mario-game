@@ -407,7 +407,7 @@ class Game {
     this.addLivesPanel();
     this.addInfoMessage();
 
-    Promise.all([(0, _loaders.loadJSON)('/build/configs/map.json'), (0, _loaders.loadSprite)('/build/sprite/objects.json'), (0, _loaders.loadSprite)('/build/sprite/backgrounds.json'), (0, _loaders.loadJSON)('/build/sound/track-list.json')]).then(([map, objectsSpriteConfig, backgroundsSpriteConfig, trackList]) => {
+    Promise.all([(0, _loaders.loadJSON)('/mario-game/build/configs/map.json'), (0, _loaders.loadSprite)('/mario-game/build/sprite/objects.json'), (0, _loaders.loadSprite)('/mario-game/build/sprite/backgrounds.json'), (0, _loaders.loadJSON)('/mario-game/build/sound/track-list.json')]).then(([map, objectsSpriteConfig, backgroundsSpriteConfig, trackList]) => {
       if (trackList) {
         this.time = 400;
         this.soundManager = new _SoundManager2.default(trackList);
