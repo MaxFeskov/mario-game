@@ -12,9 +12,13 @@ export default class TextManager {
     this.storage = {};
   }
 
+  static generateID() {
+    return new Date().getTime();
+  }
+
   addText(text, x, y, options = {}, id) {
     this.context.save();
-    const textID = id || new Date().getTime();
+    const textID = id || this.constructor.generateID();
     const textOptions = this.setTextStyle(Object.assign({}, this.options, options));
 
     this.context.fillText(text, x, y);
@@ -96,7 +100,7 @@ export default class TextManager {
   }
 
   textWidth(text) {
-    return this.context.measureText(text).width;
+    return this.context.measureText(text).width + 2;
   }
 
   textHeight() {
@@ -109,6 +113,6 @@ export default class TextManager {
     const height = parent.offsetHeight;
     document.body.removeChild(parent);
 
-    return height;
+    return height + 2;
   }
 }
