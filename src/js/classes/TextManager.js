@@ -38,15 +38,23 @@ export default class TextManager {
     if (Object.keys(this.storage).includes(`${textID}`)) {
       const options = this.storage[`${textID}`];
       const {
-        textAlign, y, width, height,
+        textAlign, textBaseline, width, height,
       } = options;
 
-      let { x } = options;
+      let {
+        x, y,
+      } = options;
 
       if (textAlign === 'right') {
         x -= width;
       } else if (textAlign === 'center') {
         x -= width / 2;
+      }
+
+      if (textBaseline === 'bottom') {
+        y -= height;
+      } else if (textBaseline === 'middle') {
+        y -= height / 2;
       }
 
       if (removeFormStorage) {
