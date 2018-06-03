@@ -4,4 +4,6 @@ export default {
   up: 38,
   down: 40,
   space: 32,
+  ctrl: 17,
+  shift: 16,
 };
