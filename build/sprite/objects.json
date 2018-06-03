@@ -1,0 +1,124 @@
+{
+  "path": "/build/sprite/objects.png",
+  "items": [
+    {
+      "name": "block",
+      "sx": 104,
+      "sy":  100,
+      "sWidth": 32,
+      "sHeight": 32
+    },
+    {
+      "name": "box-2",
+      "sx": 36,
+      "sy":  100,
+      "sWidth": 32,
+      "sHeight": 32
+    },
+    {
+      "name": "box-3",
+      "sx": 0,
+      "sy":  134,
+      "sWidth": 32,
+      "sHeight": 32
+    },
+    {
+      "name": "box",
+      "sx": 34,
+      "sy":  134,
+      "sWidth": 32,
+      "sHeight": 32
+    },
+    {
+      "name": "flag",
+      "sx": 70,
+      "sy":  100,
+      "sWidth": 32,
+      "sHeight": 32
+    },
+    {
+      "name": "flagpole",
+      "sx": 108,
+      "sy":  66,
+      "sWidth": 4,
+      "sHeight": 32
+    },
+    {
+      "name": "flagtop",
+      "sx": 132,
+      "sy":  68,
+      "sWidth": 16,
+      "sHeight": 16
+    },
+    {
+      "name": "mario-go-left-2",
+      "sx": 36,
+      "sy":  66,
+      "sWidth": 34,
+      "sHeight": 32
+    },
+    {
+      "name": "mario-go-left",
+      "sx": 0,
+      "sy":  66,
+      "sWidth": 34,
+      "sHeight": 32
+    },
+    {
+      "name": "mario-go-right-2",
+      "sx": 72,
+      "sy":  66,
+      "sWidth": 34,
+      "sHeight": 32
+    },
+    {
+      "name": "mario-go-right",
+      "sx": 132,
+      "sy":  0,
+      "sWidth": 34,
+      "sHeight": 32
+    },
+    {
+      "name": "mario-left",
+      "sx": 132,
+      "sy":  34,
+      "sWidth": 34,
+      "sHeight": 32
+    },
+    {
+      "name": "mario-right",
+      "sx": 0,
+      "sy":  100,
+      "sWidth": 34,
+      "sHeight": 32
+    },
+    {
+      "name": "pavement",
+      "sx": 68,
+      "sy":  134,
+      "sWidth": 32,
+      "sHeight": 32
+    },
+    {
+      "name": "pipe-top",
+      "sx": 0,
+      "sy":  0,
+      "sWidth": 64,
+      "sHeight": 64
+    },
+    {
+      "name": "pipe",
+      "sx": 66,
+      "sy":  0,
+      "sWidth": 64,
+      "sHeight": 32
+    },
+    {
+      "name": "wall",
+      "sx": 102,
+      "sy":  134,
+      "sWidth": 32,
+      "sHeight": 32
+    }
+  ]
+}

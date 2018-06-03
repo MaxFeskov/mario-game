@@ -1,0 +1,82 @@
+{
+  "path": "/build/sprite/backgrounds.png",
+  "items": [
+    {
+      "name": "bush-2",
+      "sx": 196,
+      "sy":  162,
+      "sWidth": 96,
+      "sHeight": 32
+    },
+    {
+      "name": "bush-3",
+      "sx": 162,
+      "sy":  121,
+      "sWidth": 128,
+      "sHeight": 32
+    },
+    {
+      "name": "bush",
+      "sx": 66,
+      "sy":  212,
+      "sWidth": 64,
+      "sHeight": 32
+    },
+    {
+      "name": "castle",
+      "sx": 0,
+      "sy":  0,
+      "sWidth": 160,
+      "sHeight": 160
+    },
+    {
+      "name": "cloud-2",
+      "sx": 0,
+      "sy":  162,
+      "sWidth": 96,
+      "sHeight": 48
+    },
+    {
+      "name": "cloud-3",
+      "sx": 162,
+      "sy":  71,
+      "sWidth": 128,
+      "sHeight": 48
+    },
+    {
+      "name": "cloud",
+      "sx": 0,
+      "sy":  212,
+      "sWidth": 64,
+      "sHeight": 48
+    },
+    {
+      "name": "flagpole",
+      "sx": 292,
+      "sy":  121,
+      "sWidth": 4,
+      "sHeight": 32
+    },
+    {
+      "name": "flagtop",
+      "sx": 292,
+      "sy":  71,
+      "sWidth": 16,
+      "sHeight": 16
+    },
+    {
+      "name": "hill-big",
+      "sx": 162,
+      "sy":  0,
+      "sWidth": 160,
+      "sHeight": 69
+    },
+    {
+      "name": "hill",
+      "sx": 98,
+      "sy":  162,
+      "sWidth": 96,
+      "sHeight": 37
+    }
+  ]
+}

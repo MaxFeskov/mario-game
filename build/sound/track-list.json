@@ -1,0 +1,46 @@
+{
+  "coin": {
+    "track": "/build/sound/track/coin.wav",
+    "unique": true
+  },
+  "flagpole": {
+    "track": "/build/sound/track/flagpole.wav",
+    "unique": true
+  },
+  "gameover": {
+    "track": "/build/sound/track/gameover.wav",
+    "unique": true
+  },
+  "jump": {
+    "track": "/build/sound/track/jump.wav",
+    "unique": true
+  },
+  "jump-super": {
+    "track": "/build/sound/track/jump-super.wav",
+    "unique": true
+  },
+  "kick": {
+    "track": "/build/sound/track/kick.wav",
+    "unique": true
+  },
+  "main-theme": {
+    "track": "/build/sound/track/main-theme.mp3",
+    "unique": true
+  },
+  "mariodie": {
+    "track": "/build/sound/track/mariodie.wav",
+    "unique": true
+  },
+  "pause": {
+    "track": "/build/sound/track/pause.wav",
+    "unique": true
+  },
+  "pipe": {
+    "track": "/build/sound/track/pipe.wav",
+    "unique": true
+  },
+  "powerup": {
+    "track": "/build/sound/track/powerup.wav",
+    "unique": true
+  }
+}
