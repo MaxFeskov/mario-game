@@ -14,7 +14,10 @@
           "type": "hero",
           "ranges": [
             [5, 12]
-          ]
+          ],
+          "position": {
+            "y": "bottom"
+          }
         },
         {
           "name": "pavement",
@@ -101,7 +104,7 @@
           ]
         },
         {
-          "name": "pipe_top",
+          "name": "pipe-top",
           "type": "object",
           "ranges": [
             [28, 11],
@@ -126,14 +129,21 @@
           "type": "object",
           "ranges": [
             [198, 3, 198, 11]
-          ]
+          ],
+          "position": {
+            "x": "center"
+          }
         },
         {
           "name": "flagtop",
           "type": "object",
           "ranges": [
             [198, 2]
-          ]
+          ],
+          "position": {
+            "x": "center",
+            "y": "bottom"
+          }
         },
         {
           "name": "cloud",
@@ -142,38 +152,53 @@
             [8, 3],
             [19, 2]
           ],
+          "position": {
+            "x": 0.5
+          },
           "repeatRangesStep": [48]
         },
         {
-          "name": "cloud_2",
+          "name": "cloud-2",
           "type": "background",
           "ranges": [
             [36, 2]
           ],
+          "position": {
+            "x": 0.5
+          },
           "repeatRangesStep": [48]
         },
         {
-          "name": "cloud_3",
+          "name": "cloud-3",
           "type": "background",
           "ranges": [
             [27, 3]
           ],
+          "position": {
+            "x": 0.5
+          },
           "repeatRangesStep": [48]
         },
         {
           "name": "hill",
           "type": "background",
           "ranges": [
-            [16, 11]
+            [16, 12]
           ],
+          "position": {
+            "y": "bottom"
+          },
           "repeatRangesStep": [48]
         },
         {
-          "name": "hill_big",
+          "name": "hill-big",
           "type": "background",
           "ranges": [
-            [0, 10]
+            [0, 12]
           ],
+          "position": {
+            "y": "bottom"
+          },
           "repeatRangesStep": [48]
         },
         {
@@ -182,30 +207,43 @@
           "ranges": [
             [23, 12]
           ],
+          "position": {
+            "x": 0.5
+          },
           "repeatRangesStep": [48]
         },
         {
-          "name": "bush_2",
+          "name": "bush-2",
           "type": "background",
           "ranges": [
             [41, 12]
           ],
+          "position": {
+            "x": 0.5
+          },
           "repeatRangesStep": [48]
         },
         {
-          "name": "bush_3",
+          "name": "bush-3",
           "type": "background",
           "ranges": [
             [11, 12]
           ],
+          "position": {
+            "x": 0.5
+          },
           "repeatRangesStep": [48]
         },
         {
           "name": "castle",
           "type": "background",
           "ranges": [
-            [202, 8]
-          ]
+            [204, 12]
+          ],
+          "position": {
+            "x": "center",
+            "y": "bottom"
+          }
         }
       ]
     }

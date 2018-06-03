@@ -62,6 +62,7 @@ export default class GameMap {
     } = options;
 
     const repeatRangesStep = item.repeatRangesStep || [];
+    const position = item.position || {};
 
     let stepX = 1;
     let stepY = 1;
@@ -81,14 +82,17 @@ export default class GameMap {
     for (let posX = i; posX <= maxPosX; posX += stepX) {
       for (let posY = j; posY <= maxPosY; posY += stepY) {
         const elementOptions = {
-          x: posX * this.gridStep,
-          y: posY * this.gridStep,
+          i: posX,
+          j: posY,
+          gridStep: this.gridStep,
+          position,
         };
 
-        let element;
         const {
           layer, sprite,
         } = options;
+
+        let element;
 
         if (item.type === 'background') {
           elementOptions.spriteConfig = sprite;
