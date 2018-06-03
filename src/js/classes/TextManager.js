@@ -15,7 +15,7 @@ export default class TextManager {
   addText(text, x, y, options = {}, id) {
     this.context.save();
     const textID = id || new Date().getTime();
-    const textOptions = this.setTextStyle(Object.assign(options, this.options));
+    const textOptions = this.setTextStyle(Object.assign({}, this.options, options));
 
     this.context.fillText(text, x, y);
     const width = this.textWidth(text);
