@@ -414,6 +414,7 @@ class Game {
 
         this.sounds = {
           main: this.soundManager.add({
+            autoplay: true,
             repeat: true,
             volume: 0.5
           }, 'main-theme'),
@@ -422,8 +423,6 @@ class Game {
             volume: 0.5
           }, 'gameover')
         };
-
-        this.soundManager.play(this.sounds.main);
       }
 
       const spriteConfig = {
